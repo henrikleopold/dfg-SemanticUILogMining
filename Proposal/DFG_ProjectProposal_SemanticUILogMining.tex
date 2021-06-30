@@ -14,7 +14,7 @@
 
 \addbibresource{ref.bib}
 
-\newcommand{\applicants}{Prof. Dr. Henrik Leopold, Hamburg \\ Prof. Dr. Han van der Aa, Mannheim}
+\newcommand{\applicants}{\normalfont  Henrik Leopold, Hamburg \\ Han van der Aa, Mannheim \bfseries}
 \newcommand{\project}{Process Discovery from User Interaction Logs Using Semantic Technology}
 
 \begin{document}
@@ -22,7 +22,7 @@
 % !BIB TS-program = biber
 
 {\raggedright{} \normalsize \bfseries 
-	Project Description - Project Proposals \par
+	Project Description - Project Proposals \par 
 	\applicants{} \par
 	\project{} \par
 	\rule{\textwidth}{0.5pt} \par
@@ -97,15 +97,19 @@ The problem we address in this proposal relates to three main research streams: 
 
 \subsubsection{Preliminary work}
 
+\todo{We obviously need to rewrite this in a smart way. I think we should particularly focus on the complementary aspects. They should not conclude that anyone of us could do this without the other. Highlighting the successful collaboration makes sense obviously.}
+
 Currently, Prof. Leopold is a tenured Associate Professor at the Kühne Logistics University and a senior researcher at the Hasso Plattner Institute at the University of Potsdam. He has published over 60 peer-reviewed contributions, among others, in renowned journals such as IEEE Transactions on Knowledge and Data Engineering, IEEE Transactions on Software Engineering, Information Systems, and Decision Support Systems, as well as at leading international conferences, such as Business Process Management (BPM), Advanced Information Systems Engineering (CAiSE), and Computational Linguistics (COLING). These works relate to various aspects of the proposed project, as outlined below in terms of natural language processing in process analysis and process model matching.
 
-\textbf{Natural language processing in process analysis} - Prof. Leopold has been involved in the development of various techniques that combine natural language processing and process analysis. Among others, he has developed parsers for process model labels \cite{leopold2012refactoring,leopold2019using} that facilitate the automated semantic analysis of process models. Building on these parsers, he further developed techniques for the generation of natural language texts from process models \cite{leopoldsupporting2014} and the automated identification of service candidates from process model repositories \cite{leopold2015_jss}. More recently, Prof. Leopold has been involved in the development of several techniques analyzing textual process descriptions. Among others, he contributed to a technique that can extract process performance indicators from textual process descriptions \cite{van2017transforming} and a technique that can detect to what extent the process behavior described by a textual process description deviates from an event log \cite{vanderaa2018checking}. 
+%\textbf{Natural language processing in process analysis} - Prof. Leopold has been involved in the development of various techniques that combine natural language processing and process analysis. Among others, he has developed parsers for process model labels \cite{leopold2012refactoring,leopold2019using} that facilitate the automated semantic analysis of process models. Building on these parsers, he further developed techniques for the generation of natural language texts from process models \cite{leopoldsupporting2014} and the automated identification of service candidates from process model repositories \cite{leopold2015_jss}. More recently, Prof. Leopold has been involved in the development of several techniques analyzing textual process descriptions. Among others, he contributed to a technique that can extract process performance indicators from textual process descriptions \cite{van2017transforming} and a technique that can detect to what extent the process behavior described by a textual process description deviates from an event log \cite{vanderaa2018checking}. 
 
-\textbf{Process model matching} - Prof. Leopold contributed to the development of a variety of process model matching techniques. Among others, he was involved in developing different techniques for matching two process models \cite{leopold2012probabilistic,van2017instance,meilicke2017overcoming}, process models and textual process descriptions \cite{vanderaa2016comparing}, and process models and taxonomies \cite{leopold2015towards}. Besides developing novel process matching techniques, he also contributed to the discourse on process matching evaluation \cite{kuss2018probabilistic}.
+%\textbf{Process model matching} - Prof. Leopold contributed to the development of a variety of process model matching techniques. Among others, he was involved in developing different techniques for matching two process models \cite{leopold2012probabilistic,van2017instance,meilicke2017overcoming}, process models and textual process descriptions \cite{vanderaa2016comparing}, and process models and taxonomies \cite{leopold2015towards}. Besides developing novel process matching techniques, he also contributed to the discourse on process matching evaluation \cite{kuss2018probabilistic}.
 
 In the proposed project, we will build on our prior work in different ways. On the one hand, we will reuse specific techniques, such as the parsing technique from \cite{leopold2019using} for analyzing event labels (see Section \ref{sec:wp2}). On the other hand, we will build on the experiences we gained in related settings. The experience we collected in \cite{van2017transforming} with respect to sentence classification will help us to detect and classify process weaknesses (see Section \ref{sec:wp1}). The experience with distributional semantics in \cite{leopold2015towards} will help us to define effective mechanisms to identify how posts and events are related (see Section \ref{sec:wp2}). Lastly, the experience with respect to matching, and Markov Logic formalizations in particular, will help us to address the problem of aligning a non-process-oriented and a process-oriented data structure (see Section \ref{sec:wp3}).  
 
 \subsection{Project-related publications}
+
+\todo{Maximum 10 publications. Probably good to also include some we wrote separately.}
 
 \noindent \textbf{Articles published by outlets with scientific quality assurance, book publications, and works accepted for publication but not yet published}\\[6pt]
 \textit{Journal articles:}
@@ -129,12 +133,12 @@ In the proposed project, we will build on our prior work in different ways. On t
 
 \subsection{Anticipated total duration of the project}
 
-The anticipated duration of the project is three years.
+The anticipated duration of the project is three years (36 months).
 
 \subsection{Objectives}
 \label{sec:objectives}
 
-The goals of the project are
+The goals of the project are 
 
 \begin{itemize}
 \item to develop a technique that can automatically ...   
@@ -216,6 +220,8 @@ We will approach the \textit{first goal} by defining a novel technique that comb
 
 Neither sex, gender nor diversity will play a role in the context of this research. 
 
+\todo{Sections 1 to 4 must not exceed 15 pages.}
+
 \pagebreak
 
 \section{Supplementary information on the research context}
@@ -238,16 +244,22 @@ All relevant information is discussed above.
 \subsection{Employment status information}
 
 Prof. Dr. Henrik Leopold, Associate Professor, permanent position.\\
-Prof. Dr. Han van der Aa, Junior Professor, non-permanent position.
+Prof. Dr. Han van der Aa, Junior Professor (W1), contract until ?, with the option to extend until ?).
 
 
 \subsection{First-time proposal data}
 
--
+Not applicable.
 
 \subsection{Composition of the project group}
 
-%\textbf{Prof. Dr. Henrik Leopold} - Henrik Leopold is a tenured Associate Professor at the K\"uhne Logistics University (KLU) and senior researcher at the Hasso Plattner Institute (HPI) at the Digital Engineering Faculty, University of Potsdam. Before joining KLU/HPI in February 2019, he held positions as an Assistant Professor at the Vrije Universiteit Amsterdam (February 2015 – January 2019) and WU Vienna (April 2014 – January 2015) as well as a postdoctoral research fellow at the Humboldt University of Berlin (July 2013 – March 2014). In July 2013, he obtained a PhD degree (Dr. rer. pol.) in Information Systems from the Humboldt University of Berlin. For his thesis he received the TARGION Dissertation Award 2014 for the best doctoral thesis in the field of Information Management and the runner-up of the McKinsey Business Technology Award 2013. Henrik Leopold's research is concerned with leveraging technology from the field of artificial intelligence to develop automated techniques for process analysis and process mining. The results of his research have been published in over 80 publications in books, book chapters, journals, conferences, workshops, and reports. Among others, his research has been published in the journals IEEE Transactions on Knowledge and Data Engineering, IEEE Transactions on Software Engineering, ACM Transactions on Management Information Systems, Decision Support Systems, and Information Systems. 
+The applicants of this proposal have history of successful collaboration. While they share a similar background with respect to the application of natural language processing in process analysis and mining, they both have complementary skills and knowledge. 
+
+\textbf{Prof. Dr. Henrik Leopold} - Henrik Leopold is a tenured Associate Professor at the K\"uhne Logistics University (KLU) and senior researcher at the Hasso Plattner Institute (HPI) at the Digital Engineering Faculty, University of Potsdam. Before joining KLU/HPI in February 2019, he held positions as an Assistant Professor at the Vrije Universiteit Amsterdam (February 2015 – January 2019) and WU Vienna (April 2014 – January 2015) as well as a postdoctoral research fellow at the Humboldt University of Berlin (July 2013 – March 2014). In July 2013, he obtained a PhD degree (Dr. rer. pol.) in Information Systems from the Humboldt University of Berlin. For his thesis he received the TARGION Dissertation Award 2014 for the best doctoral thesis in the field of Information Management and the runner-up of the McKinsey Business Technology Award 2013. Henrik Leopold's research is concerned with leveraging technology from the field of artificial intelligence to develop automated techniques for process analysis and process mining. The results of his research have been published in over 80 publications in books, book chapters, journals, conferences, workshops, and reports. Among others, his research has been published in the journals IEEE Transactions on Knowledge and Data Engineering, IEEE Transactions on Software Engineering, ACM Transactions on Management Information Systems, Decision Support Systems, and Information Systems. 
+
+\textbf{Prof. Dr. Han van der Aa} - Han van der Aa is a Junior Professor (W1) ...
+
+\todo{Conclude by highlighting the complementary aspects.}
 
 \subsection{Researchers in Germany with whom you have agreed to cooperate on this project}
 \label{sec:collab:germany}
@@ -365,7 +377,7 @@ Not applicable.
 
 \subsection*{Appendices}
 
-%The appendix includes the applicant's CV (\textit{CV\_PubList\_Leopold.pdf}) with a list of the 10 most important publications.  
+The appendix includes the applicant's CVs (\textit{CV\_PubList\_Leopold.pdf} and \textit{CV\_PubList\_VanDerAa.pdf}) with a list of their ten most important publications.  
 \end{document}
 
 
