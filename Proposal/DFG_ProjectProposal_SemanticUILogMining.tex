@@ -67,12 +67,33 @@ The problem we address in this proposal relates to three main research streams: 
 
 \textbf{Process mining} - ...  \textit{Process discovery} techniques (see e.g. \cite{gunther2007fuzzy,weijters2011flexible,leemans2013discovering}) allow users to investigate a visual representation of a process and, in this way, detect undesired patterns and sources of inefficiency... \textit{Conformance checking} techniques (see e.g. \cite{rozinat2008conformance,adriansyah2011conformance}) provide automated support for detecting deviations from a desired process design. 
 
+
 % \noindent\fbox{%
 %\parbox{0.985\textwidth}{%
 %In summary, traditional as well as specialized process mining techniques provide valuable input for process improvement initiatives. They, however, do not automatically identify specific process weaknesses. Existing techniques still rely on the manual work from domain experts. In this project, we will overcome this limitation and automatically identify what process weaknesses exist and to which events they relate. 
 %}}
 
-\textbf{User interaction log mining} - ...
+\textbf{User interaction log analysis} - ...
+
+In recent literature, the automated analysis of user interaction logs has received increasing attention. This is particular true for contributions from the are of \textit{Robotic Process Automation (RPA)} that aim to automatically identify automatable routines \cite{}. Since user interaction logs are able to reveal repetitive manual behavior, such techniques frequently build on user interaction logs as input \cite{}. However, by doing so, they face a number of challenges that relate to the challenges we identified above (\todo{Establish proper reference once the challenges are there.})  
+
+
+
+The reason is that user interaction logs are a highly valuable 
+
+"A UI log is essentially a collection of interactions done on GUI components: button and link clicks, keyboard entries in text areas, etc. Operation time, user information, operated area (e.g., application name, window title, URL, file path, information on GUI components, etc.), and input contents are extracted at the timing of operations that cause changes in the applications" \cite{Urabe21}
+
+Task Clustering: Manual, supervised, and unsupervised appproches available.
+\begin{itemize}
+\item Manual: "Urabe et al. proposed a method that visualizes the UI log with nodes and edges to enable analyzers to visu- ally check the flow of operations and group various data in accordance with tasks." \cite{urabe2019visualizing}
+\item Supervised: trace alignment methods \cite{agostinelli202111} (novel segmentation techniques that leverages trace alignment for automatically deriving the boundaries of a routine / but this requires a petri net)  
+\item unsupervised: \cite{leno2020identifying} detects back-edge operations in tasks, but is senstive to variations and interruptions. the same applies to established methods from frequent sequential pattern mining (prefix-span, Spade because the order of operatiosn varies), see \cite{fournier2017survey} for a survey. current paper from Urabe et al. \cite{Urabe21} uses co-occurrence feature of operations for segmentation (where the similairty drops) and then use AHC to 
+\end{itemize}
+ 
+Case identification?
+
+
+
 
 %\noindent\fbox{%
 %\parbox{0.985\textwidth}{%
