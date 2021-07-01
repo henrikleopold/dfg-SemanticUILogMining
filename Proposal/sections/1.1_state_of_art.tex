@@ -1,0 +1,66 @@
+ \subsubsection{State of the art}
+
+The problem we address in this proposal relates to three main research streams: 1) process mining, 2) user interaction log mining, and 3) natural language processing in process analysis. Below, we briefly review each stream and highlight which gaps exist with respect to the automated identification of process weaknesses.  
+
+\textbf{Process mining} - ...  \textit{Process discovery} techniques (see e.g. \cite{gunther2007fuzzy,weijters2011flexible,leemans2013discovering}) allow users to investigate a visual representation of a process and, in this way, detect undesired patterns and sources of inefficiency... \textit{Conformance checking} techniques (see e.g. \cite{rozinat2008conformance,adriansyah2011conformance}) provide automated support for detecting deviations from a desired process design. 
+
+
+% \noindent\fbox{%
+%\parbox{0.985\textwidth}{%
+%In summary, traditional as well as specialized process mining techniques provide valuable input for process improvement initiatives. They, however, do not automatically identify specific process weaknesses. Existing techniques still rely on the manual work from domain experts. In this project, we will overcome this limitation and automatically identify what process weaknesses exist and to which events they relate. 
+%}}
+
+\textbf{User interaction log analysis} - ...
+
+In recent literature, the automated analysis of user interaction logs has received increasing attention. This is particular true for contributions from the are of \textit{Robotic Process Automation (RPA)} that aim to automatically identify automatable routines \cite{}. Since user interaction logs are able to reveal repetitive manual behavior, such techniques frequently build on user interaction logs as input \cite{}. However, by doing so, they face a number of challenges that relate to the challenges we identified above (\todo{Establish proper reference once the challenges are there.})  
+
+
+
+The reason is that user interaction logs are a highly valuable 
+
+"A UI log is essentially a collection of interactions done on GUI components: button and link clicks, keyboard entries in text areas, etc. Operation time, user information, operated area (e.g., application name, window title, URL, file path, information on GUI components, etc.), and input contents are extracted at the timing of operations that cause changes in the applications" \cite{Urabe21}
+
+Task Clustering: Manual, supervised, and unsupervised appproches available.
+\begin{itemize}
+\item Manual: "Urabe et al. proposed a method that visualizes the UI log with nodes and edges to enable analyzers to visu- ally check the flow of operations and group various data in accordance with tasks." \cite{urabe2019visualizing}
+\item Supervised: trace alignment methods \cite{agostinelli202111} (novel segmentation techniques that leverages trace alignment for automatically deriving the boundaries of a routine / but this requires a petri net)  
+\item unsupervised: \cite{leno2020identifying} detects back-edge operations in tasks, but is senstive to variations and interruptions. the same applies to established methods from frequent sequential pattern mining (prefix-span, Spade because the order of operatiosn varies), see \cite{fournier2017survey} for a survey. current paper from Urabe et al. \cite{Urabe21} uses co-occurrence feature of operations for segmentation (where the similairty drops) and then use AHC to 
+\end{itemize}
+ 
+Case identification?
+
+
+
+
+%\noindent\fbox{%
+%\parbox{0.985\textwidth}{%
+%In summary, automated matching techniques have been defined in many contexts including database schemas, ontologies, and process models. The conceptual novelty of the problem we address in this project is to align a non-process-oriented data structure with a process-oriented data structure. A solution for this setting is missing. 
+%}}
+
+\textbf{Natural language processing in process analysis} - Many process analysis techniques build on natural language processing (NLP). In general, they can be subdivided into techniques that apply NLP on process models and techniques that apply NLP on process-related text documents. 
+
+%Techniques that apply NLP on \textit{process models} typically analyze the text labels associated with activities, events, and gateways. Such techniques serve a wide range of purposes. Most notably, they facilitate the automated quality assurance of process models. Among others, they can detect and correct the inconsistent use of terminology \cite{koschmider2007user} or 
+%violations of labeling conventions \cite{becker2009towards,leopold2013detection}. 
+%There are also techniques that aim to improve process model quality by detecting common modeling errors \cite{gruhn2011detecting} or ambiguously labeled activities \cite{pittke2015automatic}. 
+%Other purposes of techniques analyzing process model text labels include the identification of re-occurring patterns \cite{la2015detecting} or service candidates \cite{leopold2015_jss} in process model collections. 
+%%
+%Techniques that apply NLP on \textit{process-related text documents} primarily focus on the automatic elicitation of process models. While many of them focus on eliciting process models from general textual process descriptions \cite{ghose2007process,friedrich2011process,epure2015automatic}, some also extract process models from more specific textual resources such as uses cases \cite{sinha2010use} and group stories \cite{de2009business}. A key challenge addressed by all these techniques is the identification of process-related activities and their ordering constraints. 
+%
+%For the problem addressed in this proposal particularly the work on process model elicitation is relevant. They provide the conceptual basis for identifying process-related activities in textual resources. However, existing work does not provide the capability to identify sentences that are (or are not) related to the process execution. Since not all sentences of a social media post can be expected to relate to the execution of a process, this is an important capability that needs to be developed. 
+
+% \noindent\fbox{%
+%\parbox{0.985\textwidth}{%
+%In summary, NLP plays important role in the context of automated process analysis. For this project, particularly the contributions in the area of automated process model elicitation are relevant since they provide they means to identify process-related activities in textual resources. However, they do not provide the capability to detect whether a given sentence relates to the execution of a process or not. Therefore, this capability needs to be developed.  
+%}}
+
+\subsubsection{Preliminary work}
+
+\todo{We obviously need to rewrite this in a smart way. I think we should particularly focus on the complementary aspects. They should not conclude that anyone of us could do this without the other. Highlighting the successful collaboration makes sense obviously.}
+
+Currently, Prof. Leopold is a tenured Associate Professor at the Kühne Logistics University and a senior researcher at the Hasso Plattner Institute at the University of Potsdam. He has published over 60 peer-reviewed contributions, among others, in renowned journals such as IEEE Transactions on Knowledge and Data Engineering, IEEE Transactions on Software Engineering, Information Systems, and Decision Support Systems, as well as at leading international conferences, such as Business Process Management (BPM), Advanced Information Systems Engineering (CAiSE), and Computational Linguistics (COLING). These works relate to various aspects of the proposed project, as outlined below in terms of natural language processing in process analysis and process model matching.
+
+%\textbf{Natural language processing in process analysis} - Prof. Leopold has been involved in the development of various techniques that combine natural language processing and process analysis. Among others, he has developed parsers for process model labels \cite{leopold2012refactoring,leopold2019using} that facilitate the automated semantic analysis of process models. Building on these parsers, he further developed techniques for the generation of natural language texts from process models \cite{leopoldsupporting2014} and the automated identification of service candidates from process model repositories \cite{leopold2015_jss}. More recently, Prof. Leopold has been involved in the development of several techniques analyzing textual process descriptions. Among others, he contributed to a technique that can extract process performance indicators from textual process descriptions \cite{van2017transforming} and a technique that can detect to what extent the process behavior described by a textual process description deviates from an event log \cite{vanderaa2018checking}. 
+
+%\textbf{Process model matching} - Prof. Leopold contributed to the development of a variety of process model matching techniques. Among others, he was involved in developing different techniques for matching two process models \cite{leopold2012probabilistic,van2017instance,meilicke2017overcoming}, process models and textual process descriptions \cite{vanderaa2016comparing}, and process models and taxonomies \cite{leopold2015towards}. Besides developing novel process matching techniques, he also contributed to the discourse on process matching evaluation \cite{kuss2018probabilistic}.
+
+In the proposed project, we will build on our prior work in different ways. On the one hand, we will reuse specific techniques, such as the parsing technique from \cite{leopold2019using} for analyzing event labels (see Section \ref{sec:wp2}). On the other hand, we will build on the experiences we gained in related settings. The experience we collected in \cite{van2017transforming} with respect to sentence classification will help us to detect and classify process weaknesses (see Section \ref{sec:wp1}). The experience with distributional semantics in \cite{leopold2015towards} will help us to define effective mechanisms to identify how posts and events are related (see Section \ref{sec:wp2}). Lastly, the experience with respect to matching, and Markov Logic formalizations in particular, will help us to address the problem of aligning a non-process-oriented and a process-oriented data structure (see Section \ref{sec:wp3}).  

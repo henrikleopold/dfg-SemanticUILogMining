@@ -1,5 +1,3 @@
-
-
 \documentclass{scrartcl}
 \usepackage{enumitem}
 \usepackage[utf8]{inputenc}
@@ -32,370 +30,46 @@
 \newenvironment{nscenter}
  {\parskip=3pt\par\nopagebreak\centering}
  {\par\noindent\ignorespacesafterend}
-
+ 
+ 
+ %++++++ SECTION 1 ++++++
 \section{Starting Point}
-
-\begin{itemize}
-\item 1 - 1.5 pages general intro / positioning / and challenges
-\item figure should make clear what we want to achieve
-\item Story: Process mining is widely used to discover, analyze, and improve processes. Traditional process mining techniques reconstruct how a process is executed by analyzing so-called event logs. These event logs are extracted from IT systems and, therefore, provide insights into what exactly happened in the organization. A key assumption, however, is that the events in these event logs have a certain level of granularity, i.e. , they relate to activities such as analyzing an order or sending an invoice. If the events relate to very fine-grained actions, such as clicking on a button or entering a name into a text field, traditional process mining techniques are not very helpful... 
-\end{itemize}
-
-
-\begin{figure}[h!]
-\centering
-\caption{Super cool example}
-\label{fig:example}
-\end{figure}
-
-Figure \ref{fig:example} illustrates this idea. It shows ... 
-
-These examples illustrate that ...  However, to automatically achieve this, X main challenges need to be overcome: 
-
-\begin{itemize}
-\item \textit{Challenge 1}: 
-\item ...
-\end{itemize}
-
-An effective technique ... should be able to successfully cope with all these challenges. In the following, we review the state of the art and show that these challenges are not adequately handled up to now.
+\input{sections/1.0_starting_point}
 
 \subsection{State of the art and preliminary work}
-
-\subsubsection{State of the art}
-
-The problem we address in this proposal relates to three main research streams: 1) process mining, 2) user interaction log mining, and 3) natural language processing in process analysis. Below, we briefly review each stream and highlight which gaps exist with respect to the automated identification of process weaknesses.  
-
-\textbf{Process mining} - ...  \textit{Process discovery} techniques (see e.g. \cite{gunther2007fuzzy,weijters2011flexible,leemans2013discovering}) allow users to investigate a visual representation of a process and, in this way, detect undesired patterns and sources of inefficiency... \textit{Conformance checking} techniques (see e.g. \cite{rozinat2008conformance,adriansyah2011conformance}) provide automated support for detecting deviations from a desired process design. 
-
-
-% \noindent\fbox{%
-%\parbox{0.985\textwidth}{%
-%In summary, traditional as well as specialized process mining techniques provide valuable input for process improvement initiatives. They, however, do not automatically identify specific process weaknesses. Existing techniques still rely on the manual work from domain experts. In this project, we will overcome this limitation and automatically identify what process weaknesses exist and to which events they relate. 
-%}}
-
-\textbf{User interaction log analysis} - ...
-
-In recent literature, the automated analysis of user interaction logs has received increasing attention. This is particular true for contributions from the are of \textit{Robotic Process Automation (RPA)} that aim to automatically identify automatable routines \cite{}. Since user interaction logs are able to reveal repetitive manual behavior, such techniques frequently build on user interaction logs as input \cite{}. However, by doing so, they face a number of challenges that relate to the challenges we identified above (\todo{Establish proper reference once the challenges are there.})  
-
-
-
-The reason is that user interaction logs are a highly valuable 
-
-"A UI log is essentially a collection of interactions done on GUI components: button and link clicks, keyboard entries in text areas, etc. Operation time, user information, operated area (e.g., application name, window title, URL, file path, information on GUI components, etc.), and input contents are extracted at the timing of operations that cause changes in the applications" \cite{Urabe21}
-
-Task Clustering: Manual, supervised, and unsupervised appproches available.
-\begin{itemize}
-\item Manual: "Urabe et al. proposed a method that visualizes the UI log with nodes and edges to enable analyzers to visu- ally check the flow of operations and group various data in accordance with tasks." \cite{urabe2019visualizing}
-\item Supervised: trace alignment methods \cite{agostinelli202111} (novel segmentation techniques that leverages trace alignment for automatically deriving the boundaries of a routine / but this requires a petri net)  
-\item unsupervised: \cite{leno2020identifying} detects back-edge operations in tasks, but is senstive to variations and interruptions. the same applies to established methods from frequent sequential pattern mining (prefix-span, Spade because the order of operatiosn varies), see \cite{fournier2017survey} for a survey. current paper from Urabe et al. \cite{Urabe21} uses co-occurrence feature of operations for segmentation (where the similairty drops) and then use AHC to 
-\end{itemize}
- 
-Case identification?
-
-
-
-
-%\noindent\fbox{%
-%\parbox{0.985\textwidth}{%
-%In summary, automated matching techniques have been defined in many contexts including database schemas, ontologies, and process models. The conceptual novelty of the problem we address in this project is to align a non-process-oriented data structure with a process-oriented data structure. A solution for this setting is missing. 
-%}}
-
-\textbf{Natural language processing in process analysis} - Many process analysis techniques build on natural language processing (NLP). In general, they can be subdivided into techniques that apply NLP on process models and techniques that apply NLP on process-related text documents. 
-
-%Techniques that apply NLP on \textit{process models} typically analyze the text labels associated with activities, events, and gateways. Such techniques serve a wide range of purposes. Most notably, they facilitate the automated quality assurance of process models. Among others, they can detect and correct the inconsistent use of terminology \cite{koschmider2007user} or 
-%violations of labeling conventions \cite{becker2009towards,leopold2013detection}. 
-%There are also techniques that aim to improve process model quality by detecting common modeling errors \cite{gruhn2011detecting} or ambiguously labeled activities \cite{pittke2015automatic}. 
-%Other purposes of techniques analyzing process model text labels include the identification of re-occurring patterns \cite{la2015detecting} or service candidates \cite{leopold2015_jss} in process model collections. 
-%%
-%Techniques that apply NLP on \textit{process-related text documents} primarily focus on the automatic elicitation of process models. While many of them focus on eliciting process models from general textual process descriptions \cite{ghose2007process,friedrich2011process,epure2015automatic}, some also extract process models from more specific textual resources such as uses cases \cite{sinha2010use} and group stories \cite{de2009business}. A key challenge addressed by all these techniques is the identification of process-related activities and their ordering constraints. 
-%
-%For the problem addressed in this proposal particularly the work on process model elicitation is relevant. They provide the conceptual basis for identifying process-related activities in textual resources. However, existing work does not provide the capability to identify sentences that are (or are not) related to the process execution. Since not all sentences of a social media post can be expected to relate to the execution of a process, this is an important capability that needs to be developed. 
-
-% \noindent\fbox{%
-%\parbox{0.985\textwidth}{%
-%In summary, NLP plays important role in the context of automated process analysis. For this project, particularly the contributions in the area of automated process model elicitation are relevant since they provide they means to identify process-related activities in textual resources. However, they do not provide the capability to detect whether a given sentence relates to the execution of a process or not. Therefore, this capability needs to be developed.  
-%}}
-
-\subsubsection{Preliminary work}
-
-\todo{We obviously need to rewrite this in a smart way. I think we should particularly focus on the complementary aspects. They should not conclude that anyone of us could do this without the other. Highlighting the successful collaboration makes sense obviously.}
-
-Currently, Prof. Leopold is a tenured Associate Professor at the Kühne Logistics University and a senior researcher at the Hasso Plattner Institute at the University of Potsdam. He has published over 60 peer-reviewed contributions, among others, in renowned journals such as IEEE Transactions on Knowledge and Data Engineering, IEEE Transactions on Software Engineering, Information Systems, and Decision Support Systems, as well as at leading international conferences, such as Business Process Management (BPM), Advanced Information Systems Engineering (CAiSE), and Computational Linguistics (COLING). These works relate to various aspects of the proposed project, as outlined below in terms of natural language processing in process analysis and process model matching.
-
-%\textbf{Natural language processing in process analysis} - Prof. Leopold has been involved in the development of various techniques that combine natural language processing and process analysis. Among others, he has developed parsers for process model labels \cite{leopold2012refactoring,leopold2019using} that facilitate the automated semantic analysis of process models. Building on these parsers, he further developed techniques for the generation of natural language texts from process models \cite{leopoldsupporting2014} and the automated identification of service candidates from process model repositories \cite{leopold2015_jss}. More recently, Prof. Leopold has been involved in the development of several techniques analyzing textual process descriptions. Among others, he contributed to a technique that can extract process performance indicators from textual process descriptions \cite{van2017transforming} and a technique that can detect to what extent the process behavior described by a textual process description deviates from an event log \cite{vanderaa2018checking}. 
-
-%\textbf{Process model matching} - Prof. Leopold contributed to the development of a variety of process model matching techniques. Among others, he was involved in developing different techniques for matching two process models \cite{leopold2012probabilistic,van2017instance,meilicke2017overcoming}, process models and textual process descriptions \cite{vanderaa2016comparing}, and process models and taxonomies \cite{leopold2015towards}. Besides developing novel process matching techniques, he also contributed to the discourse on process matching evaluation \cite{kuss2018probabilistic}.
-
-In the proposed project, we will build on our prior work in different ways. On the one hand, we will reuse specific techniques, such as the parsing technique from \cite{leopold2019using} for analyzing event labels (see Section \ref{sec:wp2}). On the other hand, we will build on the experiences we gained in related settings. The experience we collected in \cite{van2017transforming} with respect to sentence classification will help us to detect and classify process weaknesses (see Section \ref{sec:wp1}). The experience with distributional semantics in \cite{leopold2015towards} will help us to define effective mechanisms to identify how posts and events are related (see Section \ref{sec:wp2}). Lastly, the experience with respect to matching, and Markov Logic formalizations in particular, will help us to address the problem of aligning a non-process-oriented and a process-oriented data structure (see Section \ref{sec:wp3}).  
+\input{sections/1.1_state_of_art}
 
 \subsection{Project-related publications}
+\input{sections/1.2_project_publications}
 
-\todo{Maximum 10 publications. Probably good to also include some we wrote separately.}
-
-\noindent \textbf{Articles published by outlets with scientific quality assurance, book publications, and works accepted for publication but not yet published}\\[6pt]
-\textit{Journal articles:}
-\begin{enumerate}[leftmargin=*]
-\item \fullcite{van2019efficient}.
-\item \fullcite{leopold2019using}.
-\item \fullcite{vanderaa2018checking}.
-\item \fullcite{meilicke2017overcoming}.
-\item \fullcite{vanderaa2016comparing}.
-\end{enumerate}
-\textit{Conference papers:}
-\begin{enumerate}[resume,leftmargin=*]
-\item \fullcite{van2019extracting}.
-\item \fullcite{van2018challenges}.
-\item \fullcite{van2016dealing}.
-\item \fullcite{leopold2015towards}.
-\item \fullcite{leopold2012probabilistic}.
-\end{enumerate}
-
+ % ++++++ SECTION 2 ++++++
 \section{Objectives and work programme}
+\input{sections/2_work_programme}
 
-\subsection{Anticipated total duration of the project}
-
-The anticipated duration of the project is three years (36 months).
-
-\subsection{Objectives}
-\label{sec:objectives}
-
-The goals of the project are 
-
-\begin{itemize}
-\item to develop a technique that can automatically ...   
-
-\item to show the practical value ... 
-\end{itemize}
-
-We will approach the \textit{first goal} by defining a novel technique that combines NLP with .... Figure \ref{fig:approach} gives an high-level overview of the proposed architecture. It shows that the proposed technique consists of three main steps.   
-
-\begin{figure}[h!]
-\centering
-
-\caption{Overview of proposed technique}
-\label{fig:approach}
-\end{figure}
-
-
-%The input for the technique is a set of social media posts and a set of event logs\footnote{Note that the technique does not require more than a single event log, but is simply able to handle several event logs.}. 
-%The \textit{first step} of the technique is concerned with identifying and extracting weaknesses in the social media posts. This will be achieved by building on NLP tools such as dependency parsers and sentence classification techniques (see work package 1, Section \ref{sec:wp1}). The goal of the \textit{second step} is to identify the links between the identified weaknesses and the events from the event logs. To achieve this, we will  
-% characterize the links between all possible weakness-event pairs by using different perspectives of similarity (see work package 2, Section \ref{sec:wp2}). Based on these link characterizations, we will then use optimization rules specified in a Markov Logic formalization to compute the most likely correspondences between weaknesses and events. The rules of the Markov Logic formalization may, for instance, specify that a weakness can only be linked to an event if the timestamp of the associated social media post indicates that the event occurred before the post was created. The definition of appropriate rules will be one of the key tasks of this project (see work package 3, Section \ref{sec:wp3}). The \textit{third step} is concerned with clustering and ranking the weaknesses. The purpose of clustering weaknesses is to recognize whether several weaknesses that are linked to a single event relate to the same \textit{weakness class}. For example, several customers may complain about waiting too long before receiving a voucher. Therefore, we would consider \textit{voucher waiting time} as a weakness class. The purpose of then ranking these weakness classes is to provide an indication of where to start with the improvement initiative. The idea is that highly ranked weakness classes are more frequent and more severe than lower ranked weakness classes. After clustering and ranking, we, therefore, can generate a weakness report that can serve as input for a process improvement initiative (see work package 4, Section \ref{sec:wp4}). 
- 
-%We will approach the \textit{second goal} of the project by implementing the automated technique defined in work packages 1 through 4. Moreover, we will systematically evaluate the implemented technique by applying it to different real-world data sets. While social media posts are publicly available and can be efficiently obtained via APIs\footnote{See e.g. https://developer.twitter.com/en/docs.}, event log data is harder to obtain. However, there are a number of relevant event logs that are publicly available and that we plan to use as a starting point:
-%\begin{itemize}
-%\item \textbf{BPI Challenge 2016}: This event log  originates from the International Business Process Intelligence Challenge from the year 2016. It contains events from the Dutch Employee Insurance Agency (UVW), which handles employee insurances and provides labor market-related services in the Netherlands. This log is well-suited for the purposes of this project because it is customer-oriented and contains text data (similar to social media posts) about customer complaints in English.
-%\item \textbf{BPI Challenge 2019}: This event log originates from the International Business Process Intelligence Challenge from the year 2019. It contains (English) events from the purchase order handling process of AkzoNobel, a large multinational company with over 50 subsidiaries in the area of coatings and paints. While this log well-suited for the purposes of this project because it is customer-oriented, it does not come with textual resources created by customers. However, we will obtain relevant data from Twitter and, in this way, manually complement the log. 
-%\end{itemize} 
-
-%The implementation of the proposed technique will be conducted in Python and based on the PM4Py process mining framework\footnote{https://pm4py.fit.fraunhofer.de/} (work package 5, Section \ref{sec:wp5}). By manually creating gold standards for our evaluation data sets, we will test our technique with respect to its extraction, alignment, and clustering capabilities. We will use the evaluation results both during the project for improving our technique and at the end of the project in the context of a summative evaluation (work package 6, Section \ref{sec:wp6}). In the following, we describe the work packages in detail. Note that we provide the estimated duration of each work package in project months (PM) in the title of each work package. 
-
-\subsection{Work programme including proposed research methods}
-
-%We have divided the work into six work packages presented in the subsections below. In the last subsection, we give an overview on the complete project together with a time line that shows the order in which we will work on the different topics.
-
-\subsubsection{Work package 1: Identification of process-related weaknesses in sentences (9PM)}
-\label{sec:wp1}
-
-
-\subsubsection{Work package 2: Definition of similarity metrics (9 PM)}
-\label{sec:wp2}
-
-
-\subsubsection{Work package 3: Modeling the alignment problem (9 PM)}
-\label{sec:wp3}
-
-\subsubsection{Work package 4: Grouping and ranking (3 PM)}
-\label{sec:wp4}
-
-\subsubsection{Work package 5: Implementation (6 PM)}
-\label{sec:wp5}
-
-
-\subsubsection{Work package 6: Evaluation (6 PM)}
-\label{sec:wp6}
-
-
-\subsubsection{Overview on the work plan}
-
-%As explained above, the project consists of six work packages. Naturally, there are interdependencies among these work packages. Figure \ref{fig:workplan} shows a simplified work plan that mostly abstracts from parallel and overlapping work. The only work package that is shown to be conducted in parallel is work package 5 (i.e., the implementation),  which is spread over a total of 24 months. It is important to highlight that the transitions between two packages won't be as strict as depicted. We are aware of the various interdependencies  (e.g. between work packages 2 and 3) and will take them into account appropriately.  
-%%There are, for instance, interdependencies between work package 2 and 3. If the similarity measures are not appropriate, this cannot be compensated by ``smart" modeling. We are fully aware of these interdependencies and will take them into account appropriately. 
-%However, the rather abstract view on the work plan shown in Figure \ref{fig:workplan} highlights our general idea of having two main iterations:
-%\begin{itemize}
-%\item The first iteration ends after 21 month. At the end of this iteration, there will be a first implemented prototype available, which we tested in the context of a first comprehensive evaluation. The outcome of this evaluation will provide valuable insights into the strengths and weaknesses of our technique and, therefore, determine which components need to be improved. 
-%\item The second iteration is slightly shorter and will be mainly used to address identified weaknesses and improve the performance of the technique. What is more, it contains work package 5, which will be used to group and rank the results from work package 4. Finally, we will perform a summative evaluation and compare our approach to established process mining techniques. 
-%\end{itemize} 
-%
-%\begin{figure}[h!]
-%\includegraphics[width=\textwidth]{Figures/timeline.pdf}
-%\caption{Work plan}
-%\label{fig:workplan}
-%\end{figure}
-%
-%Note that the work plan shown above allocates a total of 42 project months to 3 years. As explained in Section \ref{sec:staff}, we intend to hire a PhD student for 3 years, which means that remaining 6 project months will be covered by the principal investigator of this project. 
-
+% ++++++ SECTION 3 ++++++
 \section{Bibliography concerning the state of the art, the research objectives, and the work}
-
 \printbibliography[heading=none]
 
+% ++++++ SECTION 4 ++++++
 \section{Relevance of sex, gender and/or diversity}
 
 Neither sex, gender nor diversity will play a role in the context of this research. 
-
 \todo{Sections 1 to 4 must not exceed 15 pages.}
-
 \pagebreak
 
+% ++++++ SECTION 5 ++++++
 \section{Supplementary information on the research context}
-% max 10 pages
+\input{sections/5_supplementary_info}
 
-\subsection{Ethical and/or legal aspects of the project}
-
-%We would like to stress two ethical aspects with respect to the use of social media data. First, we will only use fully legal means (e.g, by using the official Twitter API) to obtain social media data. Second, we will replace the user names associated with the extracted posts with identifiers, such that the privacy of the users is protected (even though we will only use public posts). 
-
-\subsection{Data handling}
-
-%As explained in Section \ref{sec:objectives} and \ref{sec:wp6}, we plan to create new data sets consisting of event logs and related Twitter posts. Such data sets are not only relevant for this project, but also for other researchers in the area of process mining. In fact, the large interest in event logs has led to the creation of a central event log repository\footnote{https://www.tf-pm.org/resources/logs}, which is hosted and managed by the IEEE Task Force on Process Mining. As a member of the IEEE Task Force on Process Mining, we therefore plan to make our data sets publicly available via this repository. 
-
-\subsection{Other information}
-
-All relevant information is discussed above. 
-
+% ++++++ SECTION 6 ++++++
 \section{People/collaborations/funding}
+\input{sections/6_people}
 
-\subsection{Employment status information}
-
-Prof. Dr. Henrik Leopold, Associate Professor, permanent position.\\
-Prof. Dr. Han van der Aa, Junior Professor (W1), contract until ?, with the option to extend until ?).
-
-
-\subsection{First-time proposal data}
-
-Not applicable.
-
-\subsection{Composition of the project group}
-
-The applicants of this proposal have history of successful collaboration. While they share a similar background with respect to the application of natural language processing in process analysis and mining, they both have complementary skills and knowledge. 
-
-\textbf{Prof. Dr. Henrik Leopold} - Henrik Leopold is a tenured Associate Professor at the K\"uhne Logistics University (KLU) and senior researcher at the Hasso Plattner Institute (HPI) at the Digital Engineering Faculty, University of Potsdam. Before joining KLU/HPI in February 2019, he held positions as an Assistant Professor at the Vrije Universiteit Amsterdam (February 2015 – January 2019) and WU Vienna (April 2014 – January 2015) as well as a postdoctoral research fellow at the Humboldt University of Berlin (July 2013 – March 2014). In July 2013, he obtained a PhD degree (Dr. rer. pol.) in Information Systems from the Humboldt University of Berlin. For his thesis he received the TARGION Dissertation Award 2014 for the best doctoral thesis in the field of Information Management and the runner-up of the McKinsey Business Technology Award 2013. Henrik Leopold's research is concerned with leveraging technology from the field of artificial intelligence to develop automated techniques for process analysis and process mining. The results of his research have been published in over 80 publications in books, book chapters, journals, conferences, workshops, and reports. Among others, his research has been published in the journals IEEE Transactions on Knowledge and Data Engineering, IEEE Transactions on Software Engineering, ACM Transactions on Management Information Systems, Decision Support Systems, and Information Systems. 
-
-\textbf{Prof. Dr. Han van der Aa} - Han van der Aa is a Junior Professor (W1) ...
-
-\todo{Conclude by highlighting the complementary aspects.}
-
-\subsection{Researchers in Germany with whom you have agreed to cooperate on this project}
-\label{sec:collab:germany}
-
-%We agreed to cooperate on this project with two researchers from Germany: 
-%
-%\textbf{Prof. Dr. Heiner Stuckenschmidt} - Heiner Stuckenschmidt is Full Professor for Artificial Intelligence and Member of the Data- and Web Science Research Group. He is conducting research in Knowledge Representation and Reasoning as well as their application in semantic information management. He is Co-Editor in Chief of the Journal on Data Semantics and associate editor of the ‘Information Sciences' Journal. He has published more than 200 papers at international peer reviewed conference and journals related to Artificial Intelligence and Information Management.
-%
-%\textbf{Prof. Dr. Han van der Aa} - Han van der Aa is a Junior Professor in the Data and Web Science Group at the University of Mannheim. Before that, he was an Alexander von Humboldt Fellow, working as a postdoctoral researcher in the Department of Computer Science at the Humboldt-Universität zu Berlin. He obtained a PhD from the Vrije Universiteit Amsterdam in 2018. His research interests include business process modeling, process mining, natural language processing, and complex event processing. His research has been published, among others, in IEEE Transactions on Knowledge and Data Engineering, Decisions Support Systems, and Information Systems.
-%
-%We have already collaborated with both researchers mentioned above in the context of various research efforts. With Prof. Dr. Heiner Stuckenschmidt, we worked, among others, on process matching using Markov Logic networks \cite{meilicke2017overcoming,leopold2012probabilistic,leopold2015towards}. With Prof. Dr. Han van der Aa, we worked on various topics combining NLP and process analysis \cite{van2017transforming,vanderaa2016comparing,leopold2019using}. Based on these experiences, we are confident that both can provide valuable input for this project. With respect to the work packages, we expect that Prof. Dr. Heiner Stuckenschmidt will provide input for work packages 2 and 3 and that Prof. Dr. Han van der Aa can provide input for work packages 1 and 4. 
-
-\subsection{Researchers abroad with whom you have agreed to cooperate on this project}
-\label{sec:collab:abroad}
-
-%Outside Germany, we agreed to cooperate with Prof. Dr. Hajo A. Reijers:
-%
-%\textbf{Prof. Dr. Hajo A. Reijers} - Hajo Reijers is a Full Professor in the Department of Information and Computing Sciences of Utrecht University, where he holds the chair in Business Process Management and Analytics. He is also a part-time, full professor in the Department of Mathematics and Computer Science of Eindhoven University of Technology, as well as an adjunct professor in the School of Information Systems of Queensland University of Technology (QUT). The focus of his academic research is on business process innovation, process analytics, robotic process automation, and enterprise IT. He published in Information Systems, the Journal of Management Information Systems, the Journal of Information Technology, the International Journal of Cooperative Information Systems, Organization Studies, and Omega, among other journals.
-%
-%Also with Prof. Dr. Hajo A. Reijers we have already worked on numerous research efforts in the area of process mining \cite{Koorn2020,van2019efficient} and NLP in process analysis \cite{van2017transforming,vanderaa2016comparing,leopold2019using}. What is more, we have worked (and are currently working) together on several research projects funded by the Dutch Research Council (NWO): 
-%\begin{itemize}
-%\item AutoDrivE - Automatic Derivation of Event Logs  (2019 - 2023)
-%\item TACTICS - Techniques for the Analysis of Client-Team Interactions (2017 - 2022)
-%\item SADIQ - Software for the Analysis of Dental Implant Quality (2016 - 2017)
-%\end{itemize}
-%
-%Against this background, we believe that the coorporation with Prof. Dr. Hajo A. Reijers will be a valuable addition to this project. 
-
-\subsection{Researchers with whom you have collaborated scientifically within the past three years}
-
-%The researchers listed above are also the ones we have mainly collaborated with over the last three years. We plan to use this project to continue and deepen these collaborations. Other research collaborations in the context of process mining and process analysis have been conducted with the following researchers:
-%\begin{itemize}
-%\item Prof Dr. Avigdor Gal (Israel Institute of Technology): Process mining
-%\item Prof. Dr. Jan Mendling (WU Vienna): NLP-based process analysis 
-%\item Prof. Dr. Matthias Weidlich (Humboldt University of Berlin): Conformance checking and process matching
-%\item Dr. Adela del-R\'{i}o-Ortega (Universidad de Sevilla): Process performance indicators
-%\end{itemize}
-
-\subsection{Project-relevant cooperation with commercial enterprises}
-
-%We do not plan to cooperate with a commercial enterprise in the context of this project. However, as discussed earlier, we plan to reuse an event log we are currently creating together with the German process mining software vendor Lana Labs\footnote{https://lanalabs.com/} in the research project \textit{AutoDrivE} (Automatic Derivation of Event Logs)\footnote{https://www.nwo.nl/onderzoek-en-resultaten/programmas/open+technologieprogramma/projecten/2018/2018-16672/} funded by the Dutch Research Council (NWO).
-
-%As discussed earlier, we plan to cooperate with the German process mining software vendor Lana Labs\footnote{https://lanalabs.com/}. The main goal of the cooperation is to jointly create an additional data set for the evaluation of the proposed technique. We have already collected experience with Lana Labs as a project partner. In the research project \textit{AutoDrivE} (Automatic Derivation of Event Logs) funded by the Dutch Research Council (NWO), we are cooperating on the topic of automated event log extraction from transactional databases. We are, therefore, confident that also the collaboration in the context of this project will be successful.   
-
-\subsection{Project-relevant participation in commercial enterprises}
-
-There is no project-relevant participation in commercial enterprises.  
-
-\subsection{Scientific equipment}
-
-We won't need any further scientific equipment. 
-
-\subsection{Other submissions}
-
-We currently have no other proposal submissions under review.  
-
+% ++++++ SECTION 7 ++++++
 \section{Requested modules/funds}
+\input{sections/7_funds}
 
-\subsection{Basic Module}
-
-\subsubsection{Funding for Staff}
-\label{sec:staff}
-
-%We apply for a position of a doctoral researcher (TV-L 13) for the time of 3 years to conduct the work planned for this project (36 PM). The position will be assigned to a PhD student who will work on all work packages. The principal investigator of this project will contribute 6PM to the project, covering the remainder of the overall effort of 42PM. The PhD student will work on the project as central topic of his/her PhD thesis. The PhD student will be supported by the principal investigator as well as researchers we agreed to collaborate with (see Sections \ref{sec:collab:germany} and \ref{sec:collab:abroad}). \\
-
-%\begin{funds}[funding for staff]
-%\positionmul{Doctoral researcher, TV-L 13, 36 months}{5700}{36}
-%\end{funds}
-
-\subsubsection{Direct Project Costs}
-%\begin{funds}[direct project costs]
-
-\subsubsubsection{Equipment up to \euro10,000, Software and Consumables}
-
-%We will not require additional hardware or software. The required infrastructure will be provided by the K\"uhne Logistics University. 
-
-\subsubsubsection{Travel Expenses}
-\label{sec:costs:travel}
-
-%The results of the project will be published and presented at national and international conferences. We plan to visit three conferences per year from the second year on. Assuming an average of \euro1500 per conference, we will need 3 x 2 x \euro1500 = \euro9000. We further plan to visit our project partners Prof. Dr. Heiner Stuckenschmidt, Prof. Dr. Han van der Aa, and Prof. Dr. Hajo Reijers. Since Prof. Dr. Heiner Stuckenschmidt and Prof. Dr. Han van der Aa are both working at the University of Mannheim, this means we will conduct two trips, which can be covered by \euro1000 (Mannheim) and \euro1500 (Utrecht) = \euro2500. In total, \euro11500 will be required for covering travel expenses.
-
-%\positionmul{Conference visits}{1500}{6}
-%\position{Visit University of Mannheim}{1000}
-%\position{Visit Utrecht University}{1500}
-
-\subsubsubsection{Visiting Researchers}
-
-%As explained in Sections \ref{sec:collab:germany} and \ref{sec:collab:abroad}, we plan to cooperate with Prof. Dr. Heiner Stuckenschmidt, Prof. Dr. Han van der Aa, and Prof. Dr. A Hajo Reijers. Costs of mutal visits are listed in above in Section \ref{sec:costs:travel}.
-
-\subsubsubsection{Expenses for Laboratory Animals}
-
-Not applicable. 
-
-\subsubsubsection{Other Costs}
-
-There won't be any other costs than the positions listed above. 
-
-\subsubsubsection{Project-related publication expenses}
-
-We don't expect any publication expenses besides the conference fees, which we already included in the travel expenses in Section \ref{sec:costs:travel}. The total for direct projects costs is listed below. 
-
-%\end{funds}
-
-\subsubsection{Instrumentation}
-
-Not applicable. 
-
-\subsection{Module Temporary Position for Principal Investigator}
-
-Not applicable. 
-
-\subsection{Module Replacement Funding}
-
-Not applicable. 
-
+% ++++++ APPENDIX ++++++
 \subsection*{Appendices}
 
 The appendix includes the applicant's CVs (\textit{CV\_PubList\_Leopold.pdf} and \textit{CV\_PubList\_VanDerAa.pdf}) with a list of their ten most important publications.  
