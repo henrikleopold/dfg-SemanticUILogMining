@@ -1,13 +1,32 @@
- \begin{itemize}
-\item 1 - 1.5 pages general intro / positioning / and challenges
-\item figure should make clear what we want to achieve
-\item Story: Process mining is widely used to discover, analyze, and improve processes. Traditional process mining techniques reconstruct how a process is executed by analyzing so-called event logs. These event logs are extracted from IT systems and, therefore, provide insights into what exactly happened in the organization. A key assumption, however, is that the events in these event logs have a certain level of granularity, i.e. , they relate to activities such as analyzing an order or sending an invoice. If the events relate to very fine-grained actions, such as clicking on a button or entering a name into a text field, traditional process mining techniques are not very helpful... 
-\end{itemize}
+Process mining is widely used to discover, analyze, and improve business processes \cite{van2016data}. Traditional process mining techniques reconstruct how a process is executed by analyzing so-called event logs. These event logs are extracted from IT systems and, therefore, provide insights into how exactly processes are executed in the organization. However, this approach has an important limitation: It limits the scope of process discovery to \textit{back-end events}, i.e., secondary, indirect events that were triggered by the actual user activity. User activities that do not result in such back-end events or take place in productivity applications such as Excel, Outlook, and other desktop applications are, therefore, invisible to existing process mining techniques. Hence, the goal of this proposal is to ... 
 
 
 \begin{figure}[h!]
 \centering
-\caption{Super cool example}
+ \begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{llllllll}
+\hline\noalign{\smallskip}\noalign{\smallskip}
+\textbf{ID} &\textbf{Timestamp}&\textbf{Event}&\textbf{Application}&\textbf{Element label}&\textbf{Element type}&\textbf{Element value}&\textbf{URL}\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+1&08:35.2&click&Outlook&Customer X - O123&list&Please initiate an order …&-\\\noalign{\smallskip}
+2&08:39.7&click&Chrome&Log in&button&-&https://www.salesforce.com/\\\noalign{\smallskip}
+3&08:40.0&change&Chrome&Password&text field&-&https://login.salesforce.com/\\\noalign{\smallskip}
+4&08:40.5&click&Chrome&Submit&button&-&https://login.salesforce.com/\\\noalign{\smallskip}
+5&08:42.9&click&Chrome&Messenger&button&-&https://www.facebook.com/\\\noalign{\smallskip}
+6&08:44.1&click&Chrome&New message&list&Hey, how are you? …&https://www.facebook.com/\\\noalign{\smallskip}
+7&08:52.6&click&Chrome&New Account&button&-&https://com.lightning.force.com/home\\\noalign{\smallskip}
+8&08:53.2&change&Chrome&New Order&text field&Customer X&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+9&08:53.9&ctrl + c&Outlook &Customer X - O123&list&Please initiate an order …&-\\\noalign{\smallskip}
+10&08:54.3&click&Chrome&Billing address&text field&-&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+11&08:54.4&ctrl + v&Chrome&Billing address&text field&Hofstraße 14, ... &https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+12&08:54.9&click&Chrome&Save&button&-&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+13&08:56.7&click&Outlook&Customer X - O234&list&Please initiate an order …&-\\\noalign{\smallskip}
+14&08:58.2&change&Chrome&New Order&text field&Customer X&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+15&08:58.6&click&Chrome&Upload files&button&CustomerX-2021-O234.docx&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+\hline\noalign{\smallskip}
+\end{tabular}
+\end{adjustbox}
+\caption{Simplified example of an UI log}
 \label{fig:example}
 \end{figure}
 
@@ -16,8 +35,12 @@ Figure \ref{fig:example} illustrates this idea. It shows ...
 These examples illustrate that ...  However, to automatically achieve this, X main challenges need to be overcome: 
 
 \begin{itemize}
-\item \textit{Challenge 1}: 
-\item ...
+\item \textit{Challenge 1: Transformation}
+\item \textit{Challenge 2: Noise filtering}
+\item \textit{Challenge 3: Segmentation}
+\item \textit{Challenge 4: Event abstraction}
+\item \textit{Challenge 5: Labeling}
+ 
 \end{itemize}
 
 An effective technique ... should be able to successfully cope with all these challenges. In the following, we review the state of the art and show that these challenges are not adequately handled up to now.

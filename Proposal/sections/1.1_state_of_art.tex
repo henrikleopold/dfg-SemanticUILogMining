@@ -3,7 +3,7 @@
 The problem we address in this proposal relates to three main research streams: 1) process mining, 2) user interaction log mining, and 3) natural language processing in process analysis. Below, we briefly review each stream and highlight which gaps exist with respect to the automated identification of process weaknesses.  
 
 \textbf{Process mining} - ...  \textit{Process discovery} techniques (see e.g. \cite{gunther2007fuzzy,weijters2011flexible,leemans2013discovering}) allow users to investigate a visual representation of a process and, in this way, detect undesired patterns and sources of inefficiency... \textit{Conformance checking} techniques (see e.g. \cite{rozinat2008conformance,adriansyah2011conformance}) provide automated support for detecting deviations from a desired process design. 
-
+  
 
 % \noindent\fbox{%
 %\parbox{0.985\textwidth}{%
@@ -12,24 +12,15 @@ The problem we address in this proposal relates to three main research streams: 
 
 \textbf{User interaction log analysis} - ...
 
-In recent literature, the automated analysis of user interaction logs has received increasing attention. This is particular true for contributions from the are of \textit{Robotic Process Automation (RPA)} that aim to automatically identify automatable routines \cite{}. Since user interaction logs are able to reveal repetitive manual behavior, such techniques frequently build on user interaction logs as input \cite{}. However, by doing so, they face a number of challenges that relate to the challenges we identified above (\todo{Establish proper reference once the challenges are there.})  
+In recent literature, the automated analysis of user interaction logs has received increasing attention. This is particular true for contributions from the are of \textit{Robotic Process Automation (RPA)} that aim to automatically identify automatable routines \cite{}. Since user interaction logs are able to reveal repetitive manual behavior, such techniques frequently build on user interaction logs as input \cite{}. However, by doing so, they face a number of challenges that relate to the challenges we identified above (\todo{Establish proper reference once the challenges are there.})
 
+%"we therefore need to segment a UI log into traces, such that each trace corresponds to one exe- cution of a task."
 
+%"The problem of UI log segmentation is also related to that of correlating uncorrelated events in event logs used for process mining (Bayomie et al. 2019, 2016; Ferreira and Gillblad 2009). However, this problem has been ad- dressed in restrictive settings. In particular, Ferreira and Gillblad (2009) addressed the problem when the process (in our case the routine) does not have cycles/repetitions, whereas (Bayomie et al. 2016, 2019) assume that a process model is given as input, which means that the the rou- tine specification is known. Also, the approaches in Fer- reira and Gillblad (2009) and Bayomie et al. (2016) were shown to produce rather inaccurate results, whereas RPM seeks to identify routines with high levels of confidence, given that replicating a routine inaccurately can lead to costly errors, especially in contexts where unattended bots are used."
 
-The reason is that user interaction logs are a highly valuable 
+One of the key challenges is splitting the single sequence of events from an UI log into traces. This task is typically referred to as \textit{segmentation} \cite{Urabe21,leno2021robotic}. To address the segmentation task, researchers have proposed manually, supervised, and unsupervised approaches. A \textit{manual approach} was introduced by \cite{urabe2019visualizing}. They visualize the UI log using a graph and, in this way, support the user in identifying both higher level tasks as well as trace boundaries. However, besides the visualization, there is no further automated support. A \textit{supervised approach} was proposed by \cite{agostinelli202111}. They leverage trace alignments from conformance checking to automatically determine the boundaries of a trace. This approach, however, requires a Petri net representing the underlying process as input and, therefore, cannot be applied without already knowing the process flow in advance. Given the restrictions of manual and supervised approaches, many researchers have focused on proposing \textit{unsupervised approaches} for segmentation. For instance, \cite{leno2020identifying} construct a control-flow graph from the UI log and use back edges detection to identify trace boundaries. Urabe et al. \cite{Urabe21} use co-occurrence feature of operations for segmentation (where the similairty drops) and then use AHC to ... (What are the disadvantages) Why do we need something else? We might 
 
-"A UI log is essentially a collection of interactions done on GUI components: button and link clicks, keyboard entries in text areas, etc. Operation time, user information, operated area (e.g., application name, window title, URL, file path, information on GUI components, etc.), and input contents are extracted at the timing of operations that cause changes in the applications" \cite{Urabe21}
-
-Task Clustering: Manual, supervised, and unsupervised appproches available.
-\begin{itemize}
-\item Manual: "Urabe et al. proposed a method that visualizes the UI log with nodes and edges to enable analyzers to visu- ally check the flow of operations and group various data in accordance with tasks." \cite{urabe2019visualizing}
-\item Supervised: trace alignment methods \cite{agostinelli202111} (novel segmentation techniques that leverages trace alignment for automatically deriving the boundaries of a routine / but this requires a petri net)  
-\item unsupervised: \cite{leno2020identifying} detects back-edge operations in tasks, but is senstive to variations and interruptions. the same applies to established methods from frequent sequential pattern mining (prefix-span, Spade because the order of operatiosn varies), see \cite{fournier2017survey} for a survey. current paper from Urabe et al. \cite{Urabe21} uses co-occurrence feature of operations for segmentation (where the similairty drops) and then use AHC to 
-\end{itemize}
- 
-Case identification?
-
-
+The 
 
 
 %\noindent\fbox{%
