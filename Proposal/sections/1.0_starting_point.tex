@@ -33,7 +33,7 @@ To avoid this problem and be able to obtain a comprehensive view on business pro
 \label{fig:example}
 \end{figure}
 
-A closer look a at the UI log from Figure \ref{fig:example} reveals that conducting process discovery on such a log is a complex task. Specifically, four main challenges need to be overcome: 
+A closer look a at the UI log from Figure \ref{fig:example} reveals that conducting process discovery on such a log is a complex task. Specifically, five main challenges need to be overcome: 
 
 \begin{itemize}
 \item \textit{Challenge 1: Noise filtering}: UI logs may contain events that do not relate to the actual process execution. Examples include visits to social media platforms, checking private e-mails, and ordering private items in online shops. In the UI log from Figure \ref{fig:example}, we observe a case from the first category: The user briefly switches to the social media platform Facebook to read a message before resuming the work in Salesforce. Note that not all noisy events can be recognized via the type of application or the URL. As an example consider reading a private e-mail that was sent to the professional e-mail address of the user. All these events must be properly recognized and removed since they are not part of the actual process execution. 
@@ -43,6 +43,8 @@ A closer look a at the UI log from Figure \ref{fig:example} reveals that conduct
 \item \textit{Challenge 3: Event abstraction}: A process model that is directly derived from the events from an UI log will be very large and only contain low level events such as ``\textit{Click confirm button}'' or ``\textit{Open e-mail}". From an analytical point of view, however,  it would be desirable to include higher level events that represent actual business activities such as ``\textit{Create order}'' or ``\textit{Contact customer}''. This process of event abstraction is highly challenging since UI events constituting a business activity may not be executed consecutively and in varying ways. As an example, consider the events relating to the creation of orders \textit{O123} and \textit{O234}. The creation of the first order involves entering a billing address while the creation of the second order involves uploading a file. 
 
 \item \textit{Challenge 4: Event labeling}: A useful process representation requires clear and expressive text labels. Therefore, once higher-level events have been identified, they still need to be labeled properly. Automatically concluding that, for instance, events 10 to 14 can be appropriately described by ``\textit{Create order}'' is considerably complex. Here it is required to recognize the overall context and the final outcome of a series of low level events.  
+ 
+\item  \textit{Challenge 5: Model discovery}: The outcome of process discovery is typically a process model-based representation. There are, however, a plethora of different algorithms available, each having different strengths and weaknesses. So far, existing process discovery algorithms have not been applied in the context of UI logs. The challenge, therefore, is to identify which algorithm is best suited to provide the user with an effective representation of the discovered process. 
  \end{itemize}
 
 An effective technique for discovering process models from UI logs should be able to successfully cope with all these challenges. In the following, we review the state of the art and show that these challenges are not adequately handled up to now. \todo{(We need to briefly talk about the HOW already, i.e., that we will use NLP.)}
