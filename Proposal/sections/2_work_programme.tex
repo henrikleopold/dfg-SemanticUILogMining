@@ -45,8 +45,24 @@ We will approach the \textit{first goal} by defining a novel technique that comb
 \label{sec:wp1}
 
 
-\subsubsection{Work package 2:  Noise removal (X PM)}
+\subsubsection{Work package 2:  Event Classification and Noise removal (X PM)}
 \label{sec:wp2}
+
+This work package focuses on the classification of events in a UI log and the subsequent identification and  removal of irrelevant, i.e., noisy ones.
+
+\mypar{Event classification}
+Process mining techniques assume that each event in a log is associated with a particular event class, denoting the action to which the event corresponds~\cite{van2016data}, such as ``\emph{accept order}'' or ``\emph{pay invoice amount}''.
+However, such event classes are not readily available for UI logs. Rather, as shown in the example of \autoref{fig:example}, events are characterized by various attributes that jointly indicate the type of step that is being performed. For instance, in the form of  an application (e.g., Outlook), and further details, such as the element label (e.g., a particular e-mail) and its value (e.g., the message content). 
+\todo{give an example of similar events with different actions}
+
+ As a first step to prepare a UI log for process mining, we aim to classify each event in an UI log, allowing us to assign a label to events and thus to recognize which events correspond to the same kind of action. 
+ 
+ how to classify:
+event label is typically an action and object, where in this case the object can consist of e.g., the application and specific element label (e.g., what button/window in a given application), whereas the action can be 
+ - tools for analysis of polluted and synonymous event labels, adapted to specific use case at hand (finding relevant attributes, role identification, some NLP, etc, can refer to this AI4BPM paper)
+ 
+ 
+ \mypar{Noise removal}
 
 \begin{itemize}
 \item Would be great to go beyond rules here. 
@@ -55,6 +71,7 @@ We will approach the \textit{first goal} by defining a novel technique that comb
 \item Can we use some sort of semantic angle here? Not sure whether we can determine the domain of a process and just kill anything that is unrelated or so. 
 \end{itemize}
 
+\mypar{Outcome}
 
 \subsubsection{Work package 3: Case identification (X PM)}
 \label{sec:wp3}
