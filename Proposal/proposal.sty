@@ -1,7 +1,7 @@
 \ProvidesPackage{proposal}[2018/02/27]
 
 \usepackage[T1]{fontenc}
-\usepackage[english, ngerman, russian]{babel}
+%\usepackage[english, ngerman, russian]{babel}
 \usepackage{csquotes}
 \usepackage{amsmath}
 \usepackage[hidelinks]{hyperref}
@@ -34,13 +34,13 @@
 \newcommand{\total}{}
 \DeclareOption{german}{
     \sisetup{locale=DE}
-    \AtBeginDocument{\selectlanguage{ngerman}}
+%    \AtBeginDocument{\selectlanguage{ngerman}}
     \renewcommand{\pagemark}{Seite \thepage~von \pageref{LastPage}}
     \renewcommand{\total}{Summe}
 }
 \DeclareOption{english}{
     \sisetup{locale=US}
-    \AtBeginDocument{\selectlanguage{english}}
+%    \AtBeginDocument{\selectlanguage{english}}
 	\renewcommand{\pagemark}{page \thepage~of \pageref{LastPage}}
     \renewcommand{\total}{Total}
 }
