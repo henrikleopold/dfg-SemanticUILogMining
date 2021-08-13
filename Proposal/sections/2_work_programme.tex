@@ -62,8 +62,8 @@ For this, we can simply concatenate all textual attribute values, followed by ba
 Once events are transformed in such feature vectors, noise identification can be approached as either a single-class or a two-class classification problem, using state-of-the-art text classifiers such as BERT~\cite{Devlin2019}. The former involves training a classifier that recognizes which events are related to a specific process, e.g., by assuming that the majority of events in a UI log are related to that. While such an approach thus would not require any user input, the classification accuracy may be improved in a two-class setting, where users explicitly label some events as process relevant and irrelevant, so that few-shot learning techniques can be employed~\cite{yu2018diverse}.
 While such classifiers can be employed with just a UI log as input, we will also incorporate mechanisms that allow user to provide additional domain-specific information about the process at hand, such as textual documentation or (high-level) process models, which can help the classifier to better distinguish process relevant from irrelevant events.
 
-\mypar{Task outcome}
-The outcome of this task is a classification approach that identifies irrelevant events in a UI log. The approach will be applicable without requiring any additional user input, though users may improve the approach's accuracy through manual labeling of events, as well as by supplying further process-specific artifacts (e.g., a process model) as input.
+\mypar{Work package outcome}
+The outcome of this work package is a classification approach that identifies irrelevant events in a UI log. The approach will be applicable without requiring any additional user input, though users may improve the approach's accuracy through manual labeling of events, as well as by supplying further process-specific artifacts (e.g., a process model) as input.
 %This work package focuses on the classification of events in a UI log and the subsequent identification and  removal of irrelevant, i.e., noisy, ones.
 %
 %\mypar{Event classification}
@@ -93,12 +93,28 @@ The outcome of this task is a classification approach that identifies irrelevant
 \subsubsection{Work package 3: Case identification (X PM)}
 \label{sec:wp3}
 
-\begin{itemize}
-\item It would be great to have some interesting angle here; maybe based on optimization. 
-\item We probably first need to detect start and end of a case 
-\item I was thinking of some semantic perspective that helps to identify which events belong together, e.g. based on the data that are used. 
-\item Overlapping cases (batching) might impede the use of co-occurrence-based statistics
-\end{itemize}
+Once the irrelevant events have been filtered out of a UI log, we next need to recognize which events belong to the same process instance, e.g., to the same customer order or service ticket, a task referred to as \emph{case identification}.
+
+Existing techniques that address this task in general process mining settings primarily base the identification on co-occurrence statistics, which reveal behavioral regulations in an event log (cf., \autoref{sec:stateoftheart}). While such techniques work well for relatively structured settings, their performance deteriorates for event logs stemming from more flexible environments in which the execution of several cases overlaps, such as e.g., seen in the example of \autoref{fig:example}, the first three events each start a new process instance, by initiating three different orders in a batch-like manner.
+
+\mypar{Instance-based event matching}
+Recognizing this challenge, this work package sets out to develop a new approach for case identification, tailored to the specifics of UI logs, by building on semantic matching technology.
+Specifically, to determine the likelihood that events belong to the same case from a semantic viewpoint, e.g., because both refer to a same order ID or mention the same customer name, we frame the comparison of the events as an \emph{instance-based schema matching} task. For this, we recognize that events stemming from a particular application can be represented as instance in a particular schema (characterized by their payload attributes), enabling the application of existing matching techniques (cf., \cite{somerefs}).
+
+\mypar{Optimization} Having obtained similarity scores between individual events, these scores can then be used together with behavioral regularities identified by existing techniques~\cite{ref}, and cardinality constraints (e.g., each event belongs to exactly or at most one case), to establish an optimization problem, specifically using Markov logic formulation. By solving this problem, we will obtain an event grouping that maximizes the semantic similarity and respects the identified behavioral regularities.
+
+\mypar{Outcome}
+The outcome of this work package is a case identification approach that assign case identifiers to the events in a (filtered) UI log, such that the new log encompasses a number of cases, each corresponding to a sequence of events related to the same process instance.
+
+
+
+
+%\begin{itemize}
+%\item It would be great to have some interesting angle here; maybe based on optimization. 
+%\item We probably first need to detect start and end of a case 
+%\item I was thinking of some semantic perspective that helps to identify which events belong together, e.g. based on the data that are used. 
+%\item Overlapping cases (batching) might impede the use of co-occurrence-based statistics
+%\end{itemize}
 
 \subsubsection{Work package 4: Event abstraction (X PM)}
 \label{sec:wp4}
