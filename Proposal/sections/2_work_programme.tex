@@ -123,13 +123,26 @@ The outcome of this work package is a case identification approach that assign c
 %\item Overlapping cases (batching) might impede the use of co-occurrence-based statistics
 %\end{itemize}
 
-\subsubsection{Work package 4: Event abstraction (X PM)}
+\subsubsection{Work package 4: Log abstraction (X PM)}
 \label{sec:wp4}
 
-\begin{itemize}
-\item In the end, similar to WP3: we need to detect what belongs together. Not even sure about the order to be honest. 
-\item You did something in that area, didnt you?
-\end{itemize}
+UI logs comprise low-level event data, in which each event corresponds to a small action performed by a user. This fine-granular nature makes the data unsuitable for meaningful process analysis. This particularly holds for process discovery, since the application of discovery techniques on low-level event logs yields so-called \emph{spaghetti models}, as e.g., depicted in \textbf{figure}.
+
+To tackle this issue, log abstraction is a pre-processing technique to lift the event sequences of a log to a more abstract representation, by grouping low-level events into high-level activities. Existing techniques for log abstraction (cf., \textbf{[6], [7]}) differ in the adopted algorithms and employ, for instance, clustering of events based on temporal information \textbf{[8]} or the detection of predefined patterns [9]. Yet, their focus is on how the abstraction is conducted, rather than what properties the abstracted log shall satisfy. Without dedicated control on the result of log abstraction, however, it is hard to ensure that an abstraction is appropriate for a particular context or specific analysis goal.
+This is particularly problematic in the context of UI logs, since these have clear characteristics that should guide the log-abstraction task.
+
+\mypar{Constraint-driven log abstraction}
+To overcome this limitation, we propose to develop an approach for \emph{constraint-driven log abstraction}, which it supports a declarative characterization of the properties the abstracted log shall adhere to, in order to be meaningful for downstream analysis. While our approach shall support a broad range of constraint types, common ones to impose in the context of UI logs are for instance constraints that ensure that each high-level activity only comprises events that stem from the same application (to ensure semantic cohesion) or occurred within a certain timespan of each other (to ensure behavioral cohesion). 
+
+Given such a set of user-defined constraints, our approach aims to identify an optimal log abstraction, which groups together low-level event classes into high-level activities, such that a certain distance function, quantifying the behavioral and semantic similarity of events in an activity, is maximized, while still meeting the imposed constraints.
+
+\mypar{Solution algorithms}
+to guarantee an optimal solution, we will initially develop an algorithm for exhaustive log abstraction. Yet, striving for more efficient processing, we will also provide a heuristic algorithm that is guided by behavioral dependencies found in the log, e.g., by recognizing certain event classes that shall never be grouped into a single activity, due to their relative positions in traces.
+As such, this heuristic algorithm shall aim to considerably improve the algorithm's computation time, with limited impact on the quality of the obtained results.
+
+\mypar{Work package outcome}
+\todo{discuss if this is about the outcome of the approach or the outcome of the package, which is the approach itself}
+
 
 \subsubsection{Work package 5: Event labeling (X PM)}
 \label{sec:wp5}
