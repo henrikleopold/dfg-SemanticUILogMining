@@ -39,8 +39,10 @@ We will approach the \textit{first goal} by defining a novel technique that comb
 
 \subsection{Work programme including proposed research methods}
 
-%We have divided the work into six work packages presented in the subsections below. In the last subsection, we give an overview on the complete project together with a time line that shows the order in which we will work on the different topics.
+\mypar{Package structure} We divided the work programme into two work streams (WS1 and WS2) and a total of six work packages (WP1 to WP6). WS1 will be led by the University of Mannheim and consists of WP1 to WP3. WS2 will be led by the Kühne Logistics University and consists of WP4 to WP6. We have designed the two work streams in such a way that they can be executed independently from each other. We achieved this by making sure that WP4 can build on publicly available, traditional event logs until the first results from WP3 are available. Therefore, both work streams can start in parallel. 
 
+\mypar{Research method} We will achieve our objectives through the design, implementation, and evaluation of novel process mining analysis techniques. The implementation of the proposed techniques will be conducted in Python and based on the \textit{PM4Py} process mining framework\footnote{\url{https://pm4py.fit.fraunhofer.de/}}. The evaluation will be primarily based on publicly available real-world event logs\footnote{\url{https://www.tf-pm.org/resources/logs}}, whereas WP6 will focus on empirical usefulness trough user experiments. By manually creating gold standards for our evaluation data sets, we will test the techniques developed in each WP with respect the specific WP objective. We will use the evaluation results both during the project for improving our techniques and at the end of the project in the context of a summative evaluation at the end of WP6. 
+ 
 \subsubsection{Work package 1: UI log enrichment (X PM)}
 \label{sec:wp1}
 
@@ -156,6 +158,10 @@ The value of a discovered process model highly depends on the quality of the eve
 
 \subsubsection{Work package 6: Visualization (X PM)}
 \label{sec:wp6}
+
+%The final step is concerned with the visualization of the process captured in the UI log. In traditional process discovery, this is typically achieved by generating respective process models. Depending on the employed discovery algorithm, the resulting process model is a simple directly-follows graph \cite{}, a Petri net \cite{}, a BPMN model \cite{}, or a process tree \cite{}. While each algorithm (and process model type) comes with advantages and disadvantages, ..
+
+%The main challenge in this context is to provide the user with a representation that 1) provides a general overview and 2) provides respective details if required. Such multi-level  
 
 % results need to be visaluzed somehow; maybe we want to drill down; maybe test with some people? do we need different views? multi-level discovery --> check paper
 
