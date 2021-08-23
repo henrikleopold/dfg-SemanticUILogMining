@@ -174,18 +174,21 @@ The final step is concerned with the visualization of the process captured in th
 
 \subsubsection{Overview on the work plan}
 
-%As explained above, the project consists of six work packages. Naturally, there are interdependencies among these work packages. Figure \ref{fig:workplan} shows a simplified work plan that mostly abstracts from parallel and overlapping work. The only work package that is shown to be conducted in parallel is work package 5 (i.e., the implementation),  which is spread over a total of 24 months. It is important to highlight that the transitions between two packages won't be as strict as depicted. We are aware of the various interdependencies  (e.g. between work packages 2 and 3) and will take them into account appropriately.  
-%%There are, for instance, interdependencies between work package 2 and 3. If the similarity measures are not appropriate, this cannot be compensated by ``smart" modeling. We are fully aware of these interdependencies and will take them into account appropriately. 
-%However, the rather abstract view on the work plan shown in Figure \ref{fig:workplan} highlights our general idea of having two main iterations:
-%\begin{itemize}
-%\item The first iteration ends after 21 month. At the end of this iteration, there will be a first implemented prototype available, which we tested in the context of a first comprehensive evaluation. The outcome of this evaluation will provide valuable insights into the strengths and weaknesses of our technique and, therefore, determine which components need to be improved. 
-%\item The second iteration is slightly shorter and will be mainly used to address identified weaknesses and improve the performance of the technique. What is more, it contains work package 5, which will be used to group and rank the results from work package 4. Finally, we will perform a summative evaluation and compare our approach to established process mining techniques. 
-%\end{itemize} 
-%
-%\begin{figure}[h!]
-%\includegraphics[width=\textwidth]{Figures/timeline.pdf}
-%\caption{Work plan}
-%\label{fig:workplan}
-%\end{figure}
-%
-%Note that the work plan shown above allocates a total of 42 project months to 3 years. As explained in Section \ref{sec:staff}, we intend to hire a PhD student for 3 years, which means that remaining 6 project months will be covered by the principal investigator of this project. 
+\begin{figure}[bt]
+\includegraphics[width=\textwidth]{Figures/Gantt.pdf}
+\caption{Work plan}
+\label{fig:workplan}
+\end{figure}
+
+As explained above, the project consists of two work streams and six work packages. Naturally, there are interdependencies among these work packages. Figure \ref{fig:workplan} shows a simplified work plan that mostly abstracts from parallel and overlapping work within each work stream. It is important to highlight that the transitions between two packages will not be as strict as depicted. We are aware of the various interdependencies and will take them into account appropriately.  
+There are, for instance, interdependencies between WP1 and WP1. Without an enriched UI log, the noise removal technique cannot build on the newly introduce attributes. This, however, can be addressed by taking the manually created gold standard for the evaluation of WP1 as input for WP2. In this way, the noise removal technique cannot already be developed without needing a ``perfect'' solution for WP1. The rather abstract view on the work plan shown in Figure \ref{fig:workplan} highlights our general idea of having two main iterations:
+\begin{itemize}
+\item The first iteration ends after 21 month. At the end of this iteration, there will be a first implemented prototype available. The individual techniques have been evaluated both independently and as a whole. The main outcome from this iteration, therefore, are insights into the strengths and weaknesses of our techniques, which allows us to determine the required improvements and adaptations for the second iteration. 
+\item The second iteration is slightly shorter and will be mainly used to address identified weaknesses and improve the performance of the technique.
+\end{itemize} 
+
+Note that these two iterations also help us to account for the interdependencies between the two work streams (as discussed earlier). In the first iteration, WS 2 will build on traditional, freely available event logs, while in the second iteration WS 2 can build on a UI log that has been processed with the techniques from WS1. 
+
+
+
+%Note that the work plan shown above allocates a total of 42 project months to 3 years. As explained in Section \ref{sec:staff}, we intend to hire a PhD student for 3 years, which means that remaining 6 project months will be covered by the respective principal investigator of this project. 
