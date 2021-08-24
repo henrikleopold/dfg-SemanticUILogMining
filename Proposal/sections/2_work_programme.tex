@@ -54,6 +54,38 @@ We will approach the \textit{first goal} by defining a novel technique that comb
 
 The example from \autoref{fig:example} shows that UI logs contain a number of relevant attributes for each event. However, in comparison to most traditional event logs, UI logs do not contain event labels that reveal what precisely happened. To illustrate this, consider event 1 from \autoref{fig:example}. In a traditional event log, this event would probably carry a label such as ``\textit{Receive order}''. In the present UI log, we see that the event was a ``\textit{click}'' on a ``\textit{list}'' in the application ``\textit{Outlook}''. That this click relates to receiving an order from a customer can only be inferred from the associated e-mail. For other events, also the application in which the event occurred is hard to determine. For example, consider events 4, 7, and 9. According to the UI log, these events all occurred in the context of the application ``\textit{Chrome}'', i.e., an Internet browser. However, a brief analysis of the respective URL attributes reveals that event 4 relates to Facebook and event 7 relates to Salesforce. The fact that also event 9 relates to Salesforce is actually hard to identify since the URL structure of Salesforce changes once the user has logged into the application. Given that we intend to build on the semantics of the UI log events, we need to respectively enrich the raw event data from the UI log such that it is clear \textit{what} happened and \textit{where}. 
 
+%
+%\begin{figure}[h!]
+%\centering
+% \begin{adjustbox}{max width=\textwidth}
+%\begin{tabular}{llllllll}
+%\hline\noalign{\smallskip}\noalign{\smallskip}
+%\textbf{ID} &\textbf{Timestamp}&\textbf{Event}&\textbf{Application}&\textbf{Element label}&\textbf{Element type}&\textbf{Element value}&\textbf{URL}\\
+%\noalign{\smallskip}\hline\noalign{\smallskip}
+%1&08:35.2&click&Outlook&Customer X - O123&list&Please initiate an order …&-\\\noalign{\smallskip}
+%2&08:35.2&click&Outlook&Customer X - O234&list&Please initiate an order …&-\\\noalign{\smallskip}
+%3&08:35.2&click&Outlook&Customer Y - O789&list&Please initiate an order …&-\\\noalign{\smallskip}
+%4&08:39.7&click&Chrome&Log in&button&-&https://www.salesforce.com/\\\noalign{\smallskip}
+%5&08:40.0&change&Chrome&Password&text field&-&https://login.salesforce.com/\\\noalign{\smallskip}
+%6&08:40.5&click&Chrome&Submit&button&-&https://login.salesforce.com/\\\noalign{\smallskip}
+%7&08:42.9&click&Chrome&Messenger&button&-&https://www.facebook.com/\\\noalign{\smallskip}
+%8&08:44.1&click&Chrome&New message&list&Hey, how are you? …&https://www.facebook.com/\\\noalign{\smallskip}
+%9&08:52.6&click&Chrome&New Account&button&-&https://com.lightning.force.com/home\\\noalign{\smallskip}
+%10&08:53.2&change&Chrome&New Order&text field&Customer X&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+%11&08:53.9&ctrl + c&Outlook &Customer X - O123&list&Please initiate an order …&-\\\noalign{\smallskip}
+%12&08:54.3&click&Chrome&Billing address&text field&-&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+%13&08:54.4&ctrl + v&Chrome&Billing address&text field&Hofstraße 14, ... &https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+%14&08:54.9&click&Chrome&Save&button&-&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+%15&08:56.7&click&Outlook&Customer X - O234&list&Please initiate an order …&-\\\noalign{\smallskip}
+%16&08:58.2&change&Chrome&New Order&text field&Customer X&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+%17&08:58.6&click&Chrome&Upload files&button&CustomerX-2021-O234.docx&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+%\hline\noalign{\smallskip}
+%\end{tabular}
+%\end{adjustbox}
+%\caption{Simplified excerpt of an UI log}
+%\label{fig:example}
+%\end{figure}
+
 \mypar{Semantic annotation - What} Available process analytics techniques leveraging semantics (e.g., \cite{leopold2012probabilistic,leopold2015_jss,van2021natural}) typically expect that each event can be associated with at least one \textit{action} and at least one \textit{business object}. Building on the example introduced above, the action for event 1 is ``\textit{receive}'' and the business object is ``\textit{order}''. While there are several techniques to derive actions and business objects from labels \cite{leopold2012refactoring,leopold2019using,rebmann2021extracting}, we need to infer these components from the available UI attributes. Therefore, we will develop a process-specific feature extraction technique, which identifies those textual attributes that have the specific roles of actions and business objects. To achieve this, we will combine and adapt existing techniques for the recognition of semantic process components in textual attributes~\cite{rebmann2021extracting} and the extraction of actions from free-text log attributes~\cite{gupta2020analyzing}. Specifically, we will first use graph-based topic discovery algorithms, such as CorePhrase \cite{hammouda2005corephrase}, to detect which attributes carry relevant information. Then, we will use a tagging mechanism based on BERT \cite{Devlin2019} to identify relevant actions and business objects. 
 
 \mypar{Semantic annotation - Where} In traditional event logs, the application in which an event occurred is typically clear. That is, because the application itself records the occurrence of the event. In UI logs, the recording of the event is conducted independently of the used application(s). While the active application is captured in the \textit{application attribute} of the UI log, more and more business applications are browser-based (e.g. Salesforce, Office 365, Basecamp). Hence, the specific \textit{sub application} of many events must be inferred from the associated URL. To achieve this, we mainly build on string matching techniques. First, we check whether the application from the \textit{application attribute} is an Internet browser. This is accomplished by consulting Wikipedia via the MediaWiki Action API\footnote{\url{https://www.mediawiki.org/wiki/API:Main_page}}. Second, in case the application is an Internet browser, we resolve the URL via string matching. To illustrate this, consider event 4 from \autoref{fig:example}. After removing URL-specific prefixes and suffixes, we obtain ``\textit{salesforce}'', which can be easily verified as a business application using Wikipedia. For events where this strategy does not deliver a conclusive result, we look at the event context. For example, for event 9, the string matching strategy is unlikely to deduce that this event occurred in Salesforce. However, when looking at the history of the log, we see that we have already identified a number of sub applications, such as Salesforce (from event 4) and Facebook (from event 7). Although the URL of event 8 is rather cryptic, a string matching against these two available options, would clearly identify Salesforce as the most likely sub application. In this way, we resolve URLs and enrich the UI log with the specific sub application in which each event occurred.  

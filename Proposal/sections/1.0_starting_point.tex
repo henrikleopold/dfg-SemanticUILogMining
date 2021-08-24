@@ -17,17 +17,19 @@ To avoid this problem and be able to obtain a comprehensive view on business pro
 4&08:39.7&click&Chrome&Log in&button&-&https://www.salesforce.com/\\\noalign{\smallskip}
 5&08:40.0&change&Chrome&Password&text field&-&https://login.salesforce.com/\\\noalign{\smallskip}
 6&08:40.5&click&Chrome&Submit&button&-&https://login.salesforce.com/\\\noalign{\smallskip}
-7&08:42.9&click&Chrome&Messenger&button&-&https://www.facebook.com/\\\noalign{\smallskip}
-8&08:44.1&click&Chrome&New message&list&Hey, how are you? …&https://www.facebook.com/\\\noalign{\smallskip}
-9&08:52.6&click&Chrome&New Account&button&-&https://com.lightning.force.com/home\\\noalign{\smallskip}
-10&08:53.2&change&Chrome&New Order&text field&Customer X&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
-11&08:53.9&ctrl + c&Outlook &Customer X - O123&list&Please initiate an order …&-\\\noalign{\smallskip}
-12&08:54.3&click&Chrome&Billing address&text field&-&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
-13&08:54.4&ctrl + v&Chrome&Billing address&text field&Hofstraße 14, ... &https://com.lightning.force.com/acc/\\\noalign{\smallskip}
-14&08:54.9&click&Chrome&Save&button&-&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
-15&08:56.7&click&Outlook&Customer X - O234&list&Please initiate an order …&-\\\noalign{\smallskip}
-16&08:58.2&change&Chrome&New Order&text field&Customer X&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
-17&08:58.6&click&Chrome&Upload files&button&CustomerX-2021-O234.docx&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+7&08:52.6&click&Chrome&New Account&button&-&https://com.lightning.force.com/home\\\noalign{\smallskip}
+8&08:53.2&change&Chrome&New Order&text field&Customer X&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+9&08:53.9&ctrl + c&Outlook &Customer X - O123&list&Please initiate an order …&-\\\noalign{\smallskip}
+10&08:54.3&click&Chrome&Billing address&text field&-&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+11&08:54.4&ctrl + v&Chrome&Billing address&text field&Hofstraße 14, ... &https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+12&08:54.9&click&Chrome&Save&button&-&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+13&08:40.0&change&Chrome&Password&text field&-&https://www.facebook.com/firstname.lastname/\\\noalign{\smallskip}
+14&08:42.9&click&Chrome&Log in&button&-&https://www.facebook.com/firstname.lastname/\\\noalign{\smallskip}
+15&08:42.9&click&Chrome&Messenger&button&-&https://www.facebook.com/\\\noalign{\smallskip}
+16&08:44.1&click&Chrome&New message&list&Hey, how are you? …&https://www.facebook.com/\\\noalign{\smallskip}
+17&08:56.7&click&Outlook&Customer X - O234&list&Please initiate an order …&-\\\noalign{\smallskip}
+18&08:58.2&change&Chrome&New Order&text field&Customer X&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
+19&08:58.6&click&Chrome&Upload files&button&CustomerX-2021-O234.docx&https://com.lightning.force.com/acc/\\\noalign{\smallskip}
 \hline\noalign{\smallskip}
 \end{tabular}
 \end{adjustbox}
@@ -40,11 +42,11 @@ A closer look a at the UI log from Figure \ref{fig:example} reveals that conduct
 \begin{itemize}
 \item \textit{Challenge 1: Noise filtering}: UI logs may contain events that do not relate to the actual process execution. Examples include visits to social media platforms, checking private e-mails, and ordering private items in online shops. In the UI log from Figure \ref{fig:example}, we observe a case from the first category: The user briefly switches to the social media platform Facebook to read a message before resuming the work in Salesforce. Note that not all noisy events can be recognized via the type of application or the URL. As an example consider reading a private e-mail that was sent to the professional e-mail address of the user. All these events must be properly recognized and removed since they are not part of the actual process execution. 
   
-\item \textit{Challenge 2: Case identification}: One of the key requirements of process discovery algorithms is the availability of a so-called \textit{case identifier} \cite{van2016data}. This case identifier is required to relate each event from the event log to a specific execution of the process (referred to as \textit{process instance} or \textit{case}). Unfortunately, the notion of case identifier is generally missing in UI logs \cite{leno2021robotic}. To illustrate the challenge of recognizing which events in an UI log belong to the same case, again consider the events from Figure \ref{fig:example}. In the beginning of the log, we observe three events that potentially relate to three different cases. It seems that the user checks more than a single e-mail before picking up the first order. From the overall context, we can then infer that events 4 to 6 and 9 to 14 relate to the case concerned with order \textit{O123} from Customer X. This, however, can be only safely inferred from event 13 where the billing address from Customer X is entered into the system. Events 15 to 17 then relate to the case concerned with order \textit{O234} from Customer X, which we first encountered in event 2. Again, we can only indirectly infer this from the name of the file that is uploaded to Saleforce. 
+\item \textit{Challenge 2: Case identification}: One of the key requirements of process discovery algorithms is the availability of a so-called \textit{case identifier} \cite{van2016data}. This case identifier is required to relate each event from the event log to a specific execution of the process (referred to as \textit{process instance} or \textit{case}). Unfortunately, the notion of case identifier is generally missing in UI logs \cite{leno2021robotic}. To illustrate the challenge of recognizing which events in an UI log belong to the same case, again consider the events from Figure \ref{fig:example}. In the beginning of the log, we observe three events that potentially relate to three different cases. It seems that the user checks more than a single e-mail before picking up the first order. From the overall context, we can then infer that events 4 to 12 relate to the case concerned with order \textit{O123} from Customer X. This, however, can be only safely inferred from event 11 where the billing address from Customer X is entered into the system. Events 17 to 19 then relate to the case concerned with order \textit{O234} from Customer X, which we first encountered in event 2. Again, we can only indirectly infer this from the name of the file that is uploaded to Saleforce. 
 
 \item \textit{Challenge 3: Event abstraction}: A process model that is directly derived from the events from an UI log will be very large and only contain low level events such as ``\textit{Click confirm button}'' or ``\textit{Open e-mail}". From an analytical point of view, however,  it would be desirable to include higher level events that represent actual business activities such as ``\textit{Create order}'' or ``\textit{Contact customer}''. This process of event abstraction is highly challenging since UI events constituting a business activity may not be executed consecutively and in varying ways. As an example, consider the events relating to the creation of orders \textit{O123} and \textit{O234}. The creation of the first order involves entering a billing address while the creation of the second order involves uploading a file. 
 
-\item \textit{Challenge 4: Event labeling}: A useful process representation requires clear and expressive text labels. Therefore, once higher-level events have been identified, they still need to be labeled properly. Automatically concluding that, for instance, events 10 to 14 can be appropriately described by ``\textit{Create order}'' is considerably complex. Here it is required to recognize the overall context and the final outcome of a series of low level events.  
+\item \textit{Challenge 4: Event labeling}: A useful process representation requires clear and expressive text labels. Therefore, once higher-level events have been identified, they still need to be labeled properly. Automatically concluding that, for instance, events 8 to 12 can be appropriately described by ``\textit{Create order}'' is considerably complex. Here it is required to recognize the overall context and the final outcome of a series of low level events.  
  
 \item  \textit{Challenge 5: Model discovery}: The outcome of process discovery is typically a process model-based representation. There are, however, a plethora of different algorithms available, each having different strengths and weaknesses. So far, existing process discovery algorithms have not been applied in the context of UI logs. The challenge, therefore, is to identify which algorithm is best suited to provide the user with an effective representation of the discovered process. 
  \end{itemize}
