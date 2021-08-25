@@ -37,7 +37,13 @@ To avoid this problem and be able to obtain a comprehensive view on business pro
 \label{fig:example}
 \end{figure}
 
-A closer look a at the UI log from Figure \ref{fig:example} reveals that conducting process discovery on such a log is a complex task. Specifically, five main challenges need to be overcome: 
+A closer look a at the UI log from Figure \ref{fig:example} reveals that conducting process discovery on such a log is a complex task. Two main objectives \todo[do properly}
+\begin{itemize}
+\item Process recognition: from raw data to low level labled event log. that incvolves three challenges. ( 3 out of the 4 fundamental process mining requirements are not me by ui logs)
+\item Process representation: from low level - event log to process model. 
+\end{itemize}
+
+Specifically, five main challenges need to be overcome: 
 
 \begin{itemize}
 \item \textit{Challenge 1: Noise filtering}: UI logs may contain events that do not relate to the actual process execution. Examples include visits to social media platforms, checking private e-mails, and ordering private items in online shops. In the UI log from Figure \ref{fig:example}, we observe a case from the first category: The user briefly switches to the social media platform Facebook to read a message before resuming the work in Salesforce. Note that not all noisy events can be recognized via the type of application or the URL. As an example consider reading a private e-mail that was sent to the professional e-mail address of the user. All these events must be properly recognized and removed since they are not part of the actual process execution. 
