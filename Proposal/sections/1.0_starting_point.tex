@@ -1,8 +1,21 @@
 \label{sec:startingpoint}
 
-Process mining is widely used to discover, analyze, and improve business processes \cite{van2016data}. Traditional process mining techniques reconstruct how a process is executed by analyzing so-called event logs. These event logs are extracted from IT systems and, therefore, provide insights into how exactly processes are executed in the organization . However, this approach has an important limitation: It limits the scope of process discovery to \textit{back-end events}, i.e., secondary, indirect events that were triggered by the actual user activity \cite{diba2020extraction}. User activities that do not result in such back-end events or take place in productivity applications such as Excel, Outlook, and other desktop applications are, therefore, invisible to traditional process mining techniques. 
+Process mining is widely used to discover, analyze, and improve business processes 
+by analyzing event data extracted from IT system, stored in so-called event logs~\cite{van2016data}.
+A key task in this regard is \emph{process discovery}, which aims to reconstruct how a process was truly executed. To do so, process discovery strives to establish an accurate process model on the basis of the recorded behavior captured in an event log.
+Using such event logs as basis for discovery has an important limitation, however: It limits the scope of analysis to \textit{back-end events}, i.e., secondary, indirect events that were triggered by the actual user activity~\cite{diba2020extraction}. User activities that do not result in such back-end events or take place in productivity applications such as Excel and Outlook, are thus not recorded in event logs and, therefore, invisible to traditional process mining and discovery techniques. 
 
-To avoid this problem and be able to obtain a comprehensive view on business processes, the goal of this proposal is to develop a novel technique that conducts process discovery based on \textit{user interaction (UI) logs} rather than traditional event logs. In essence, UI logs are a collection of interactions performed on GUI components such as clicks on buttons or keyboard entries in text areas \cite{Urabe21}. The advantage of UI logs is that they can be obtained for any type of business process regardless of the software applications that are used for its execution. The only requirement is that relevant activities are performed using a computer. Available \textit{logging software} is then able to extract and store relevant data such as the interaction type (e.g. click or keyboard stroke), the interaction time, and the interaction context (e.g., the affected GUI element, window title, URL, etc.) in an UI log  \cite{leno2019action}. Figure \ref{fig:example} shows a simplified excerpt of such an UI log. The events from this UI log show how a user handles order requests using the application Salesforce that are received via e-mail. 
+To avoid this problem and be able to obtain a comprehensive view on business processes, the goal of this proposal is to enable
+%develop a novel technique that conducts 
+process discovery based on \textit{user interaction (UI) logs} rather than traditional event logs. In essence, an UI logs is a collection of recorded interactions performed on GUI components, such as clicks on buttons or keyboard entries in text areas \cite{Urabe21}. The benefit of this is that UI logs
+can be obtained for any business process of which the activities are performed on a computer, regardless of the specific software applications required for it.
+%regardless of the software applications that are used for its execution, as long as  The only requirement is that relevant activities are performed using a computer. 
+Available \textit{logging software} is then able to extract and store relevant data such as the interaction type (e.g. click or keyboard stroke), the interaction time, and the interaction context (e.g., the affected GUI element, window title, URL, etc.) in an UI log  \cite{leno2019action}, of which 
+\autoref{fig:example} shows a simplified excerpt.
+%Figure \ref{fig:example} shows a simplified excerpt of such an UI log. 
+The events from this UI log show how a user receives orders via e-mail (cf., events 1 to 3) and proceeds to handle them in Salesforce's web application (cf., events 4 to 7).
+
+%handles order requests using the application Salesforce that are received via e-mail. 
 
 \begin{figure}[h!]
 \centering
@@ -37,7 +50,11 @@ To avoid this problem and be able to obtain a comprehensive view on business pro
 \label{fig:example}
 \end{figure}
 
-A closer look a at the UI log from Figure \ref{fig:example} reveals that conducting process discovery on such a log is a complex task. First, the log does not fulfill three essential requirements of process discovery techniques \cite{van2016data}: it does not provide clear event names such that we know what has precisely happened, it is not limited to a single process but contains events that do not relate to the actual process flow (see events 13 to 16), and it does not contain a case identifier that allows us to set apart different process executions. Second, the events are very low level, meaning that a process model based on these events is very large and complex and, hence, not useful to obtain insights into the process. Against this background, we define two main problem areas for our project, each coming with specific challenges. 
+Conducting process discovery based on such UI logs is a complex task, though.
+%A closer look at the UI log from \autoref{fig:example} reveals that conducting process discovery on such a log is a complex task. 
+A particular problem is that UI log fails to fulfill essential requirements for process mining~\cite{van2016data}: (1) it does not provide clear event labels that indicate to which process step each event corresponds, (2) it contains events that are not relevant to the specific process under analysis 
+(cf., events 13 to 16), and (3) it does not contain a case identifier that allows us to 
+group together events related to the same process instance. Furthermore, even if such problems are overcome, UI logs record events at a very low level, meaning that any process model discovered based on them will be too large and complex to obtain useful insights into the process's execution. Against this background, we define two main problem areas for our project, each coming with specific challenges. 
 
 \mypar{Data transformation} We need to transform the raw UI log data into an event log that fulfills the above-mentioned requirements. This comes with three main challenges:
 
