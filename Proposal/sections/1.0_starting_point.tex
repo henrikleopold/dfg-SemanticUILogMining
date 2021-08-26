@@ -52,9 +52,9 @@ The events from this UI log show how a user receives orders via e-mail (cf., eve
 
 Conducting process discovery based on such UI logs is a complex task, though.
 %A closer look at the UI log from \autoref{fig:example} reveals that conducting process discovery on such a log is a complex task. 
-A particular problem is that UI log fails to fulfill essential requirements for process mining~\cite{van2016data}: (1) it does not provide clear event labels that indicate to which process step each event corresponds, (2) it contains events that are not relevant to the specific process under analysis 
-(cf., events 13 to 16), and (3) it does not contain a case identifier that allows us to 
-group together events related to the same process instance. Furthermore, even if such problems are overcome, UI logs record events at a very low level, meaning that any process model discovered based on them will be too large and complex to obtain useful insights into the process's execution. Against this background, we define two main problem areas for our project, each coming with specific challenges. 
+A key issue is that a log such as the one in \autoref{fig:example}, fails to fulfill basic requirements for process mining~\cite{van2016data}: it does not provide clear event labels that indicate to which process step an event corresponds (e.g., \emph{receive order} for event 1), it contains events that are not relevant to the process under analysis 
+(cf., events 13 to 16), and  it does not contain a case identifier that allows us to 
+group together events related to the same process instance. Furthermore, even if such problems are overcome, UI logs record events at a very low level, meaning that process models directly discovered from them will be too large and complex to obtain any useful insights into a process's execution. Against this background, we define two main problem areas for our project, each coming with specific challenges. 
 
 \mypar{Data transformation} We need to transform the raw UI log data into an event log that fulfills the above-mentioned requirements. This comes with three main challenges:
 
