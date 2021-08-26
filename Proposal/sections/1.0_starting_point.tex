@@ -50,19 +50,31 @@ The events from this UI log show how a user receives orders via e-mail (cf., eve
 \label{fig:example}
 \end{figure}
 
-Conducting process discovery based on such UI logs is a complex task, though.
+However, conducting process discovery based on such UI logs is a complex task, for which various problems need to be overcome. To tackle these, we structure our proposed project around two problem areas, each with its own specific challenges:
+
 %A closer look at the UI log from \autoref{fig:example} reveals that conducting process discovery on such a log is a complex task. 
-A key issue is that a log such as the one in \autoref{fig:example}, fails to fulfill basic requirements for process mining~\cite{van2016data}: it does not provide clear event labels that indicate to which process step an event corresponds (e.g., \emph{receive order} for event 1), it contains events that are not relevant to the process under analysis 
-(cf., events 13 to 16), and  it does not contain a case identifier that allows us to 
-group together events related to the same process instance. Furthermore, even if such problems are overcome, UI logs record events at a very low level, meaning that process models directly discovered from them will be too large and complex to obtain any useful insights into a process's execution. Against this background, we define two main problem areas for our project, each coming with specific challenges. 
+%A key issue is that a log such as the one in \autoref{fig:example}, fails to fulfill basic requirements for process mining~\cite{van2016data}: it does not provide clear event labels that indicate to which process step an event corresponds (e.g., \emph{receive order} for event 1), it contains events that are not relevant to the process under analysis 
+%(cf., events 13 to 16), and  it does not contain a case identifier that allows us to 
+%group together events related to the same process instance. Furthermore, even if such problems are overcome, UI logs record events at a very low level, meaning that process models directly discovered from them will be too large and complex to obtain any useful insights into a process's execution. Against this background, we define two main problem areas for our project, each coming with specific challenges. 
 
-\mypar{Data transformation} We need to transform the raw UI log data into an event log that fulfills the above-mentioned requirements. This comes with three main challenges:
+\mypar{Problem area 1: Data transformation} A key problem is that UI logs, such as depicted in \autoref{fig:example}, fail to fulfill several of the fundamental requirements that must be met by event logs to be suitable for process mining~\cite{van2016data}, i.e., (1) that events must have a clear label, indicating the process step to which it corresponds, (2) that events in a log must all be related to a single process, and (3) that events must have a case identifier, allowing one to group together events related to the same process instance. Therefore, UI logs need to be transformed into proper event logs that do fulfill these requirements. To do this, the following main challenges need to be addressed:
+\vspace{0.2em}
+\newline%
+\textit{Event annotation}: Events need to be associated with an event label that defines the process step to which it corresponds. For instance, we observe that event event 1 from \autoref{fig:example} was a ``\textit{click}'' on a ``\textit{list}'' in the application ``\textit{Outlook}''. Yet from the perspective of a business process, the contents of the received e-mail reveal that this click relates to receiving an order from a customer. As such, to prepare a UI log for process mining, events need to be annotated with appropriate labels, such as ``\emph{receive order}'' for this particular case. How to infer such a label, however, strongly depends on the event's nature and its payload, and will, therefore, differ considerably from event to event.
+\vspace{0.2em}
+\newline%
+\noindent \textit{Noise filtering}: UI logs may contain events that do not relate to the process under investigation, so-called noise. To obtain proper process insights, such noisy events need to be removed from a UI log. Obvious examples include events related to private activities, such as checking social media platforms (cf., events 13 to 16) or ordering things in a webshop. 
+However, noisy events are not always so obvious, though, making their automatic recognition complex.
+A key reason it that an event that is considered irrelevant for one process, may be relevant in another context. For example, while filing a reimbursement form of a business trip form is considered noise when analyzing an order handling process, it is a key event from the perspective of a reimbursement process.
+%As such, noise filtering involves much more than simply checking if an event corresponds to a known 
+%since not all noisy events can be recognized via the type of application or the URL.
+% As an example consider reading a private e-mail that was sent to the professional e-mail address of the user.
+\vspace{0.2em}
+\newline
+\textit{Case identification}: Although case identifiers are fundamental to process mining, they are commonly missing from UI logs~\cite{leno2021robotic}. Yet, they may be derived by recognizing events that relate to the same process instance. This involves careful analysis event attributes, combined with behavioral regularities.
+For example, next to event 1, also events 4 to 12 relate to order \textit{O123} from Customer X. This, however, can only be properly inferred from event 11 where the billing address from Customer X is entered into the system. Similarly, by considering the filename uploaded to Salesforce in event 19, we can recognize that also the preceding events 17 and 18 relate to order \emph{O234}.
 
-\noindent \textit{Event annotation}: Since UI logs do not contain event labels revealing what precisely happened, we need to automatically annotate the events with relevant context information. To illustrate this, consider event 1 from \autoref{fig:example}. In a traditional event log, this event would probably carry a label such as ``\textit{Receive order}''. In the present UI log, we see that the event was a ``\textit{click}'' on a ``\textit{list}'' in the application ``\textit{Outlook}''. That this click relates to receiving an order from a customer can only be inferred from the associated e-mail. Where such information can be inferred will, however, differ from event to event. 
-
-\noindent \textit{Noise filtering}: UI logs may contain events that do not relate to the actual process execution, so-called noise. Examples include visits to social media platforms, checking private e-mails, and ordering private items in online shops. In the UI log from \autoref{fig:example}, we observe an example from the first category (see events 13 to 16). The automatic recognition of noise is complex since not all noisy events can be recognized via the type of application or the URL. As an example consider reading a private e-mail that was sent to the professional e-mail address of the user.
-
-\noindent \textit{Case identification}: The notion of \textit{case identifier} is generally missing in UI logs \cite{leno2021robotic}. To illustrate the challenge of introducing a case identifier, again consider \autoref{fig:example}. From the overall context, we can then infer that events 4 to 12 relate to a case concerned with order \textit{O123} from Customer X. This, however, can be only safely inferred from event 11 where the billing address from Customer X is entered into the system. Events 17 to 19 then relate to a case concerned with order \textit{O234} from Customer X. This, however, we can only indirectly infer from the name of the file that is uploaded to Saleforce. 
+%Events 17 to 19 then relate to a case concerned with order \textit{O234} from Customer X. This, however, we can only indirectly infer from the name of the file that is uploaded to Saleforce. 
 
 \mypar{Process representation} We need to provide a proper representation of the UI log that visualizes the process at an appropriate level of granularity such that users can obtain the insights they require. This again comes with three main challenges: 
 
