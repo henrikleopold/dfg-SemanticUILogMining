@@ -1,5 +1,7 @@
 \label{sec:startingpoint}
 
+\vspace{-1em}
+
 Process mining is widely used to discover, analyze, and improve business processes 
 by analyzing event data extracted from IT system, stored in so-called event logs~\cite{van2016data}.
 A key task in this regard is \emph{process discovery}, which aims to reconstruct how a process was truly executed. To do so, process discovery strives to establish an accurate process model on the basis of the recorded behavior captured in an event log.
@@ -76,13 +78,23 @@ For example, next to event 1, also events 4 to 12 relate to order \textit{O123} 
 
 %Events 17 to 19 then relate to a case concerned with order \textit{O234} from Customer X. This, however, we can only indirectly infer from the name of the file that is uploaded to Saleforce. 
 
-\mypar{Process representation} We need to provide a proper representation of the UI log that visualizes the process at an appropriate level of granularity such that users can obtain the insights they require. This again comes with three main challenges: 
 
-\noindent \textit{Event abstraction}: A process model that is directly derived from the events from an UI log will be very large and only contain low level events such as ``\textit{Click confirm button}'' or ``\textit{Open e-mail}". From an analytical point of view, however,  it would be desirable to include higher level events that represent actual business activities such as ``\textit{Create order}'' or ``\textit{Contact customer}''. This process of event abstraction is highly challenging since UI events constituting a business activity may not be executed consecutively and in varying ways. As an example, consider the events relating to the creation of orders \textit{O123} and \textit{O234}. The creation of the first order involves entering a billing address while the creation of the second order involves uploading a file. 
+\mypar{Problem area 2: Process representation} 
+Once the aforementioned challenges have been overcome and a UI log has been turned into a proper event log, the obtained logs still capture processes at a very low-level of granularity. Applying process discovery directly onto them will lead to so-called \emph{spaghetti models}, which are too large and complex to provide useful insights into a process' execution.
+Therefore, this problem area focuses on the appropriate representation of low-level event data from UI systems, aiming to depict key process information at the right level of granularity. This again comes with three main challenges: 
+\vspace{0.2em}
+\newline%
+\noindent\textit{Event abstraction}: To lift low-level UI data to the right level of granularity, a log's events need to be grouped together into higher-level business activities, e.g., by recognizing that events 8 to 12 jointly result in the creation order \emph{O123}. This abstraction task is highly challenging, though, since business activities may be executed non-consecutively or comprise varying execution patterns.
+\vspace{0.2em}
+\newline%
+\noindent \textit{Event labeling}: A useful process representation requires clear and expressive activity labels, requiring groups of low-level events to be labeled appropriately. For example, events 8 to 12 can be appropriately described by a ``\textit{Create order}'' label. Doing this automatically is highly complex, though, since it requires an identification of the  outcome of a group of low-level events, as well as the role that this this group plays in the larger context of the business process.
+ \vspace{0.2em}
+ \newline%
+\noindent \textit{Model discovery and representation}: The outcome of process discovery is typically a process model-based representation. However, existing process discovery algorithms have not been developed to properly represent low level events from UI logs. The challenge, therefore, is to develop an technique that can provide the users with an effective representation of the process derived from a UI log, balancing between high-level and low-level information.
 
-\noindent \textit{Event labeling}: A useful process representation requires clear and expressive text labels. Therefore, once higher-level events have been identified, they still need to be labeled properly. Automatically concluding that, for instance, events 8 to 12 can be appropriately described by ``\textit{Create order}'' is considerably complex. Here it is required to recognize the overall context and the final outcome of a series of low level events.  
- 
-\noindent \textit{Model discovery}: The outcome of process discovery is typically a process model-based representation. However, existing process discovery algorithms have not been developed to properly represent low level events from UI logs. The challenge, therefore, is to develop an technique that can provide the users with an effective representation of the process from the UI log. 
+\mypar{Project outcome} The proposed project will result in the development of approaches that address the aforementioned challenges in an automated manner, ultimately covering the entire pipeline from raw UI data  to an informative process representation. We will achieve this by combining behavioral process analysis with a novel semantic angle, yielding approaches that overcome the limitations of existing works. In this way, the successful project will considerably advance state-of-the-art research in process mining, particularly for situations involving raw, low-level event data.
+
+%An effective technique for discovering process models from UI logs should be able to successfully cope with all these challenges. In the following, we review the state of the art and show that these challenges are not adequately handled up to now. \todo{(We need to briefly talk about the HOW already, i.e., that we will use NLP.)}
 
  
 %\mypar{Data transformation} The data transformation comes with three main challenges: event annotation, noise filtering, and case identification. 
@@ -95,4 +107,3 @@ For example, next to event 1, also events 4 to 12 relate to order \textit{O123} 
 
 
 
-An effective technique for discovering process models from UI logs should be able to successfully cope with all these challenges. In the following, we review the state of the art and show that these challenges are not adequately handled up to now. \todo{(We need to briefly talk about the HOW already, i.e., that we will use NLP.)}
