@@ -36,7 +36,7 @@ We will approach the \textit{first goal} by defining a novel technique that comb
 
 \mypar{Research method} We will achieve our objectives through the design, implementation, and evaluation of novel process mining approaches. The implementation of the proposed approaches will be conducted in Python, based on the \textit{PM4Py} process mining framework\footnote{\url{https://pm4py.fit.fraunhofer.de/}}. The evaluation will be primarily based on publicly available real-world UI logs, such as the one provided by the authors of \cite{leno2020identifying}\footnote{\url{https://figshare.com/articles/dataset/UI\_logs/12543587}}, whereas WP6 will focus on empirical usefulness trough user experiments. If we identify a need for evaluation data beyond the available UI logs, we will use the publicly available tool \textit{action logger} \cite{leno2019action} to create additional UI logs. By manually creating gold standards for our evaluation data sets, we will test the techniques developed in each WP with respect the specific WP objective. We will use the evaluation results both during the project for improving our techniques and at the end of the project in the context of a summative evaluation at the end of WP6. 
 
-\subsubsection{Work package 1: UI log enrichment (X PM)}
+\subsubsection{Work package 1: UI log enrichment (6 PM)}
 \label{sec:wp1}
 
 We have already shown that UI logs contain a number of relevant attributes for each event. While these attributes may substantially differ per event in a real-world UI log, there is one attribute that is always missing in UI logs in comparison to traditional event logs: an event label revealing what precisely happened. To illustrate this, consider the shortened version of our UI log in \autoref{fig:example_short}. In a traditional event log, event 1 would probably carry a label such as ``\textit{Receive order}''. In the present UI log, we see that the event was a ``\textit{click}'' on a ``\textit{list}'' in the application ``\textit{Outlook}''. That this click relates to receiving an order from a customer can only be inferred from the associated e-mail. Events 4 and 14 also highlight the importance of proper event labels for classifying events. Looking at the key attributes \textit{Event}, \textit{Application}, \textit{Element label}, and \textit{Element type}, they seem to be identical. However, in fact, event 4 leads the user to a log in screen (the password entry succeeds the event), while event 14 completes the log in process (the password entry precedes the event). Proper labels could have clarified this difference. Here, only the \textit{URL} attribute helps to recognize that the specific application context differs. Unfortunately, the application in which an event occurred is sometimes hard to determine. For example, consider events 4, 7, and 13. According to the UI log, these events all occurred in the context of the application ``\textit{Chrome}'', i.e., an Internet browser. However, a brief analysis of the respective URL attributes reveals that event 4 relates to Salesforce and event 13 relates to Facebook. The fact that also event 7 relates to Salesforce is actually hard to identify since the URL structure of Salesforce changes once the user has logged into the application. Given that we intend to build on the semantics of the UI log events, we need to respectively enrich the raw event data from the UI log such that it is clear \textit{what} happened and \textit{where}. 
@@ -73,7 +73,7 @@ We have already shown that UI logs contain a number of relevant attributes for e
 \mypar{Outcome} The outcome of this work package is a technique the enriches the original UI log with three new attributes: \textit{action}, \textit{business object}, and \textit{sub application}. These additional attributes serve as an important basis for the semantic analyses in the subsequent work packages.  
 
 
-\subsubsection{Work package 2:  Noise removal (X PM)}
+\subsubsection{Work package 2:  Noise removal (13.5 PM)}
 \label{sec:wp2}
 
 UI logs often contain events that do not relate to the business process under investigation, such as events related to private activities (e.g., checking Facebook) or to non-related business activities (e.g., filing a reimbursement form of a business trip).
@@ -118,7 +118,7 @@ The outcome of this work package is a classification approach that identifies ir
 %
 %\mypar{Outcome}
 
-\subsubsection{Work package 3: Case identification (X PM)}
+\subsubsection{Work package 3: Case identification (16.5 PM)}
 \label{sec:wp3}
 
 Once the irrelevant events have been filtered out of a UI log, we next need to recognize which events belong to the same process instance, e.g., to the same customer order or service ticket, a task referred to as \emph{case identification}.
@@ -135,7 +135,7 @@ Specifically, to determine the likelihood that events belong to the same case fr
 The outcome of this work package is a case identification approach that assign case identifiers to the events in a (filtered) UI log, such that the new log encompasses a number of cases, each corresponding to a sequence of events related to the same process instance.
 
 
-\subsubsection{Work package 4: Log abstraction (X PM)}
+\subsubsection{Work package 4: Log abstraction (12 PM)}
 \label{sec:wp4}
 
 Even after transformation into a proper event log, the logs stemming from UI recordings comprise low-level event data, in which each event corresponds to a small action performed by a user. This fine-granular nature makes the data unsuitable for meaningful process analysis. This particularly holds for process discovery, since the application of discovery techniques on low-level event logs yields so-called \emph{spaghetti models}, as e.g., depicted in \autoref{fig:spaghetti}.
@@ -167,7 +167,7 @@ As such, this heuristic version shall aim to considerably improve the computatio
 \mypar{Outcome} The outcome of this work package is an approach that allows users to abstract a low-level event log into high-level activities based on user-defined abstraction requirements. 
 
 
-\subsubsection{Work package 5: Activity labeling (X PM)}
+\subsubsection{Work package 5: Activity labeling (12 PM)}
 \label{sec:wp5}
 
 The value of a discovered process model highly depends on the quality of the event labels in the underlying event log. That is, because the event labels are included in the discovered model and, hence, form the basis for what a human can understand about the process \cite{mendling2010activity,Leopold2013Book}. In the context of process modeling, the importance of clear and informative labels has led to a large body of literature concerned with labeling guidelines \cite{mendling2010seven,leopold2015learning} and their automatic enforcement \cite{leopold2013detection,becker2009towards}. The bottom line is that process model activity labels should contain an action provided as an imperative verb (e.g. ``\textit{create}" or ``\textit{send}'') and at least one business object provided as a noun (e.g. ``\textit{order}'' or ``\textit{e-mail}''). Additional information can be provided at the end of the label if required. Examples of proper labels following these rules are ``\textit{Create order}'' or ``\textit{Send e-mail to customer}''. The challenge in the context of this work package is to automatically generate such meaningful labels from for each group of UI events that has been created in the previous work package. To illustrate this, consider the events 4, 5, and 6 from the UI log in Figure \ref{fig:example}. A possible proper label capturing the semantics of these three UI events could be ``\textit{Log into Salesforce}". Automatically generating such a \textit{higher-level label}, however, is highly complex since it requires to infer an overarching activity from the action, business object, and (sub) application attributes.
@@ -176,7 +176,7 @@ The value of a discovered process model highly depends on the quality of the eve
 
 \mypar{Outcome} The outcome of this work package is a technique that creates an event log with properly labeled higher-level events, i.e., labels consisting at least of an action and a business object. This event log serves as input for the technique from work package 6. 
 
-\subsubsection{Work package 6: Visualization (X PM)}
+\subsubsection{Work package 6: Visualization (12 PM)}
 \label{sec:wp6}
 
 The final step is concerned with the visualization of the process captured in the UI log. In traditional process discovery, this is achieved by generating respective process models. Depending on the employed discovery algorithm, the resulting process model is a simple directly-follows graph \cite{van2019practitioner}, a Petri net \cite{van2004workflow}, a BPMN model \cite{conforti2016bpmn}, or a process tree \cite{leemans2013discovering}. While each algorithm and output representation come with advantages and disadvantages, there is no specific discovery technique available for the UI log generated in WP1 to WP5. The specific challenge is that the original level of granularity of the UI log is not appropriate for visualization since the number of events is too high. Yet, the user might be interested in getting insights into this level to fully understand how the process is executed. What is required is a discovery algorithm that allows the user to adapt the process visualization in a flexible manner with respect to 1) the abstraction level and 2) the general scope. In the context of data warehousing and OLAP \cite{chaudhuri1997overview}, the former corresponds to \textit{drilling down} and \textit{rolling up}, while the latter corresponds to \textit{slicing}. 
@@ -206,7 +206,7 @@ The final step is concerned with the visualization of the process captured in th
 As explained above, the project consists of two work streams and six work packages. Naturally, there are interdependencies among these work packages. Figure \ref{fig:workplan} shows a simplified work plan that mostly abstracts from parallel and overlapping work within each work stream. It is important to highlight that the transitions between two packages will not be as strict as depicted. We are aware of the various interdependencies and will take them into account appropriately.  
 There are, for instance, interdependencies between WP1 and WP1. Without an enriched UI log, the noise removal technique cannot build on the newly introduce attributes. This, however, can be addressed by taking the manually created gold standard for the evaluation of WP1 as input for WP2. In this way, the noise removal technique cannot already be developed without needing a ``perfect'' solution for WP1. The rather abstract view on the work plan shown in Figure \ref{fig:workplan} highlights our general idea of having two main iterations:
 \begin{itemize}
-	\item The first iteration ends after 21 month. At the end of this iteration, there will be a first implemented prototype available. The individual techniques have been evaluated both independently and as a whole. The main outcome from this iteration, therefore, are insights into the strengths and weaknesses of our techniques, which allows us to determine the required improvements and adaptations for the second iteration. 
+	\item The first iteration ends after 21 months. At the end of this iteration, there will be a first implemented prototype available. The individual techniques have been evaluated both independently and as a whole. The main outcome from this iteration, therefore, are insights into the strengths and weaknesses of our techniques, which allows us to determine the required improvements and adaptations for the second iteration. 
 	\item The second iteration is slightly shorter and will be mainly used to address identified weaknesses and improve the performance of the technique.
 \end{itemize} 
 
