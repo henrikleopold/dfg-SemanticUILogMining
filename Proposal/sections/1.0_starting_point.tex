@@ -3,19 +3,19 @@
 \vspace{-1em}
 
 Process mining is widely used to discover, analyze, and improve business processes 
-by analyzing event data extracted from IT system, stored in so-called event logs~\cite{van2016data}.
+based on event data extracted from IT systems, stored in so-called event logs~\cite{van2016data}.
 A key task in this regard is \emph{process discovery}, which aims to reconstruct how a process was truly executed. To do so, process discovery strives to establish an accurate process model on the basis of the recorded behavior captured in an event log.
 Using such event logs as basis for discovery has an important limitation, however: It limits the scope of analysis to \textit{back-end events}, i.e., secondary, indirect events that were triggered by the actual user activity~\cite{diba2020extraction}. User activities that do not result in such back-end events or take place in productivity applications such as Excel and Outlook, are thus not recorded in event logs and, therefore, invisible to traditional process mining and discovery techniques. 
 
 To avoid this problem and be able to obtain a comprehensive view on business processes, the goal of this proposal is to enable
 %develop a novel technique that conducts 
-process discovery based on \textit{user interaction (UI) logs} rather than traditional event logs. In essence, an UI logs is a collection of recorded interactions performed on GUI components, such as clicks on buttons or keyboard entries in text areas \cite{Urabe21}. The benefit of this is that UI logs
-can be obtained for any business process of which the activities are performed on a computer, regardless of the specific software applications required for it.
+process discovery based on \textit{user interaction (UI) logs} rather than traditional event logs. In essence, a UI log is a collection of recorded interactions performed on GUI components, such as clicks on buttons or keyboard entries in text areas \cite{Urabe21}. The benefit of using UI logs is that they 
+can be obtained for any business process of which the activities are performed on a computer, regardless of the specific applications required for it.
 %regardless of the software applications that are used for its execution, as long as  The only requirement is that relevant activities are performed using a computer. 
-Available \textit{logging software} is then able to extract and store relevant data such as the interaction type (e.g. click or keyboard stroke), the interaction time, and the interaction context (e.g., the affected GUI element, window title, URL, etc.) in an UI log  \cite{leno2019action}, of which 
+Available \textit{logging software} is then able to extract and store relevant data such as the interaction type (e.g. click or keyboard stroke), the time, and context (e.g., the GUI element and URL) in a UI log  \cite{leno2019action}, of which 
 \autoref{fig:example} shows a simplified excerpt.
-%Figure \ref{fig:example} shows a simplified excerpt of such an UI log. 
-The events from this UI log show how a user receives orders via e-mail (cf., events 1 to 3) and proceeds to handle them in Salesforce's web application (cf., events 4 to 7).
+%Figure \ref{fig:example} shows a simplified excerpt of such a UI log. 
+The events in this UI log primarily show how a user receives orders via e-mail (cf., events 1 to 3) and proceeds to handle them in Salesforce's web application (cf., events 4 to 7).
 
 %handles order requests using the application Salesforce that are received via e-mail. 
 
@@ -48,24 +48,21 @@ The events from this UI log show how a user receives orders via e-mail (cf., eve
 \hline\noalign{\smallskip}
 \end{tabular}
 \end{adjustbox}
-\caption{Simplified excerpt of an UI log}
+\vspace{-1em}
+\caption{Simplified excerpt of a UI log}
 \label{fig:example}
 \end{figure}
 
 However, conducting process discovery based on such UI logs is a complex task, for which various problems need to be overcome. To tackle these, we structure our proposed project around two problem areas, each with its own specific challenges:
 
-%A closer look at the UI log from \autoref{fig:example} reveals that conducting process discovery on such a log is a complex task. 
-%A key issue is that a log such as the one in \autoref{fig:example}, fails to fulfill basic requirements for process mining~\cite{van2016data}: it does not provide clear event labels that indicate to which process step an event corresponds (e.g., \emph{receive order} for event 1), it contains events that are not relevant to the process under analysis 
-%(cf., events 13 to 16), and  it does not contain a case identifier that allows us to 
-%group together events related to the same process instance. Furthermore, even if such problems are overcome, UI logs record events at a very low level, meaning that process models directly discovered from them will be too large and complex to obtain any useful insights into a process's execution. Against this background, we define two main problem areas for our project, each coming with specific challenges. 
-
 \mypar{Problem area 1: Data transformation} A key problem is that UI logs, such as depicted in \autoref{fig:example}, do not meet the fundamental requirements that must be met by event logs used in process mining~\cite{van2016data}, i.e., (1) that events must have a clear label, indicating the process steps to which they correspond, (2) that events in a log must all be related to a single process, and (3) that events must have a case identifier, allowing one to group together events related to the same process instance. To transform UI logs into event logs suitable for process mining, the following challenges need to be addressed:
 \vspace{0.2em}
 \newline%
-\textit{Event annotation}: Events need to be associated with an event label that defines the process step to which it corresponds. For instance, we observe that event event 1 from \autoref{fig:example} was a ``\textit{click}'' on a ``\textit{list}'' in the application ``\textit{Outlook}''. Yet from the perspective of a business process, the contents of the received e-mail reveal that this click relates to receiving an order from a customer. As such, to prepare a UI log for process mining, events need to be annotated with appropriate labels, such as ``\emph{receive order}'' for this particular case. How to infer such a label, however, strongly depends on the event's nature and its payload, and will, therefore, differ considerably from event to event.
+\textit{Event annotation}: Events need to be associated with an event label that defines the process step to which it corresponds. For instance, we observe that event 1 from \autoref{fig:example} was a ``\textit{click}'' on a ``\textit{list}'' in the application ``\textit{Outlook}''. Yet from the perspective of a business process, the contents of the received e-mail reveal that this click relates to the receipt of a customer order. As such, to prepare a UI log for process mining, events need to be annotated with appropriate labels, such as ``\emph{receive order}'' for this particular case. How to infer such a label, however, strongly depends on the event's nature and its payload, and will, therefore, differ considerably from event to event.
 \vspace{0.2em}
 \newline%
-\noindent \textit{Noise filtering}: UI logs may contain events that do not relate to the process under investigation, so-called noise. To obtain proper process insights, such noisy events need to be removed from a UI log. Obvious examples include events related to private activities, such as checking social media platforms (cf., events 13 to 16) or ordering things in a webshop. 
+\noindent \textit{Noise filtering}: 
+UI logs may contain events that do not relate to the process under investigation, so-called noise. To obtain proper process insights, such noisy events need to be identified and removed. Clear examples include events related to private activities, such as checking social media platforms (cf., events 13 to 16) or ordering things in a webshop. 
 However, noisy events are not always so obvious, though, making their automatic recognition complex.
 A key reason it that an event that is considered irrelevant for one process, may be relevant for another one.
 %For example, while filing a reimbursement form of a business trip form is considered noise when analyzing an order handling process, it is a key event from the perspective of a reimbursement process.
@@ -74,26 +71,31 @@ A key reason it that an event that is considered irrelevant for one process, may
 % As an example consider reading a private e-mail that was sent to the professional e-mail address of the user.
 \vspace{0.2em}
 \newline
-\textit{Case identification}: Although case identifiers are fundamental to process mining, they are commonly missing from UI logs~\cite{leno2021robotic}. Yet, they may be derived by recognizing events that relate to the same process instance. This involves careful analysis event attributes, combined with behavioral regularities.
+\textit{Case identification}: Although case identifiers are fundamental to process mining, they are commonly missing from UI logs~\cite{leno2021robotic}. Yet, they may be derived by recognizing events that relate to the same process instance. This involves careful analysis of event attributes, combined with behavioral regularities.
 For example, next to event 1, also events 4 to 12 relate to order \textit{O123} from Customer X. This, however, can only be properly inferred from event 11 where the billing address from Customer X is entered into the system. Similarly, by considering the filename uploaded to Salesforce in event 19, we can recognize that also the preceding events 17 and 18 relate to order \emph{O234}.
 
 %Events 17 to 19 then relate to a case concerned with order \textit{O234} from Customer X. This, however, we can only indirectly infer from the name of the file that is uploaded to Saleforce. 
 
 
 \mypar{Problem area 2: Process representation} 
-Once a UI log has been transformed into an event log, the very low-level nature of the recorded UI events is still problematic. Particularly, applying process discovery directly will lead to a so-called \emph{spaghetti model}, which is too large and complex to provide useful insights into a process' execution.
+Once a UI log has been transformed into an event log, the very low-level nature of the recorded UI events is still problematic. Particularly, applying process discovery directly on such logs will lead to so-called \emph{spaghetti models}, which are too large and complex to provide useful insights into a process' execution.
 Therefore, this problem area focuses on the appropriate representation of low-level event data from UI systems, aiming to depict key process information at the right level of granularity. This again comes with three main challenges: 
 \vspace{0.2em}
 \newline%
 \noindent\textit{Event abstraction}: To lift low-level UI data to the right level of granularity, a log's events need to be grouped together into higher-level business activities, e.g., by recognizing that events 8 to 12 jointly result in the creation order \emph{O123}. This abstraction task is highly challenging, though, since business activities may be executed non-consecutively or comprise varying execution patterns.
 \vspace{0.2em}
 \newline%
-\noindent \textit{Activity labeling}: A useful process representation requires clear and expressive activity labels, requiring groups of low-level events to be labeled appropriately. For example, events 8 to 12 can be appropriately described by a ``\textit{Create order}'' label. Doing this automatically is highly complex, though, since it requires an identification of the  outcome of a group of low-level events, as well as the role that this this group plays in the larger context of the business process.
+\noindent \textit{Activity labeling}: A useful process model requires clear and expressive labels. 
+This means that the business activities, i.e., groups of events,  resulting from event abstraction need to be labeled appropriately. For example, the group consisting of events 8 to 12 can be described by a ``\textit{Create order}'' label, since this is the primary outcome its various low-level steps. Doing this automatically is highly complex, however, and fundamentally differs from the annotation of individual events (cf., Problem area 1). In particular, it requires careful consideration of the meaning of individual events, as well as the role of the business activity in the larger context of the business process.
  \vspace{0.2em}
  \newline%
-\noindent \textit{Model discovery and representation}: The outcome of process discovery is typically a process model-based representation. However, existing process discovery algorithms have not been developed to properly represent low level events from UI logs. The challenge, therefore, is to develop an technique that can provide the users with an effective representation of the process derived from a UI log, balancing between high-level and low-level information.
+\noindent \textit{Model discovery and representation}: 
+Although various process discovery algorithms have been developed, these are not tailored to the representation of abstracted, low-level events. \todo{what is the problem of that?}
+The challenge, therefore, is to develop an technique that can provide the users with an effective representation of the process derived from a UI log, balancing between high-level and low-level information.
+%
+%The outcome of process discovery is typically a process model-based representation. However, existing process discovery algorithms have not been developed to properly represent low level events from UI logs. The challenge, therefore, is to develop an technique that can provide the users with an effective representation of the process derived from a UI log, balancing between high-level and low-level information.
 
-\mypar{Project outcome} The proposed project will result in the development of approaches that address the aforementioned challenges in an automated manner, ultimately covering the entire pipeline from raw UI data  to an informative process representation. We will achieve this by combining behavioral process analysis with a novel semantic angle, yielding approaches that overcome the limitations of existing works. In this way, the successful project will considerably advance state-of-the-art research in process mining, particularly for situations involving raw, low-level event data.
+\mypar{Project outcome} The proposed project will result in the development of approaches that address the aforementioned challenges in an automated manner, ultimately covering the entire pipeline from UI log to an informative process representation. We will achieve this by combining behavioral process analysis with a novel semantic angle, yielding approaches that overcome the limitations of existing works. In this way, the successful project will considerably advance state-of-the-art research in process mining, particularly for situations involving raw, low-level event data.
 
 %An effective technique for discovering process models from UI logs should be able to successfully cope with all these challenges. In the following, we review the state of the art and show that these challenges are not adequately handled up to now. \todo{(We need to briefly talk about the HOW already, i.e., that we will use NLP.)}
 
@@ -104,7 +106,7 @@ Therefore, this problem area focuses on the appropriate representation of low-le
 
 %As already pointed out, UI logs may contain events that do not relate to the actual process execution, so-called \textit{noise}. Examples include visits to social media platforms, checking private e-mails, and ordering private items in online shops. In the UI log from \autoref{fig:example}, we observe a case from the first category: The user briefly switches to the social media platform Facebook to read a message before resuming the work in Salesforce. Note that not all noisy events can be recognized via the type of application or the URL. As an example consider reading a private e-mail that was sent to the professional e-mail address of the user. All these events must be properly recognized and removed since they are not part of the actual process execution. 
   
-%The notion of \textit{case identifier} is generally missing in UI logs \cite{leno2021robotic}. To illustrate the challenge of recognizing which events in an UI log belong to the same case, again consider the events from \autoref{fig:example}. In the beginning of the log, we observe three events that potentially relate to three different cases. It seems that the user checks more than a single e-mail before picking up the first order. From the overall context, we can then infer that events 4 to 12 relate to the case concerned with order \textit{O123} from Customer X. This, however, can be only safely inferred from event 11 where the billing address from Customer X is entered into the system. Events 17 to 19 then relate to the case concerned with order \textit{O234} from Customer X, which we first encountered in event 2. Again, we can only indirectly infer this from the name of the file that is uploaded to Saleforce. 
+%The notion of \textit{case identifier} is generally missing in UI logs \cite{leno2021robotic}. To illustrate the challenge of recognizing which events in a UI log belong to the same case, again consider the events from \autoref{fig:example}. In the beginning of the log, we observe three events that potentially relate to three different cases. It seems that the user checks more than a single e-mail before picking up the first order. From the overall context, we can then infer that events 4 to 12 relate to the case concerned with order \textit{O123} from Customer X. This, however, can be only safely inferred from event 11 where the billing address from Customer X is entered into the system. Events 17 to 19 then relate to the case concerned with order \textit{O234} from Customer X, which we first encountered in event 2. Again, we can only indirectly infer this from the name of the file that is uploaded to Saleforce. 
 
 
 
