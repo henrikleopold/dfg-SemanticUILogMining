@@ -80,8 +80,21 @@ Furthermore, the project relates to individual experience of the applicants with
 
 
 \mypar{NLP for process analysis}
+label analysis for process models  and semantic components -> allows for the extraction of actions, business objects, etc, which provides a foundation for event annotation in UI logs, though the latter considerably more free-form text
+ experience on the extraction of process information from textual process descriptions (list a bunch) can be helpful, can help here as well, though such existing works focus on process-oriented texts, which is easier than the extraction of information based on, e.g., e-mails.
+
+semantic anomaly detection can help with noise detection
+In \cite{van2021natural}, we showed that NLP can be leveraged to identify semantic execution anomalies in event logs. While this can be considered an important basis for filtering noise, the scope of semantic execution anomalies is not sufficient to recognize all types of noise. Particularly, the recognition of non-business related events requires novel semantic techniques.   
+
+henrik's experience with how to label process models, which could be used as a basis for the labeling of abstracted events
+The challenge of labeling events that result from event abstraction in event logs is conceptually highly similar to labeling activities that result from activity abstraction in process models. In prior work, we defined a technique that attempts to automatically determine names for (to be aggregated) process model fragments \cite{leopold2014simplifying}. The technique, however, relies on the specifics of event-driven process chains (EPCs) and, therefore, cannot be transferred to labeling higher-level events. 
+
 
 \mypar{Analysis of low-level event data} 
+Prof.\ Van der Aa has worked on several projects involving the analysis of low-level event data in both event logs and streams, which have clear similarities to the data granularity in the proposed project.
+Existing works relate to the identification of key event patterns in streams~\cite{cepchapter}, which can provide a basis for the recognition of behavioral regularities for case identification.
+Furthermore, experience on the efficient handling of large amounts of low-level events~\cite{sigmodpaper} can aid the computational efficiency of approaches developed for the proposed project, especially for tasks such as case identification and log abstraction.
+Finally, ongoing work on log abstraction with guarantees~\cite{icdesubmission} can be used as a starting point for the meaningful abstraction of low-level data from UI systems.
 
 \mypar{Understandability of processes}
  
