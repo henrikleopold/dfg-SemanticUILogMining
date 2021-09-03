@@ -2,7 +2,7 @@
 \subsubsection{State of the art} 
  \label{sec:stateoftheart}
  
-The proposed project primarily relates to three research streams: 1) process mining, 2) robotic process automation, and 3) natural language processing in process analysis. Below, we briefly review each stream and highlight which gaps exist with respect to the challenges identified above.  
+The proposed project primarily relates to research on traditional process mining (using event logs) and robotic process mining (using UI Logs). Below, we briefly review each stream and highlight the gaps that exist with respect to the challenges identified above.  
 
 \mypar{Process mining} Process mining is a family of data analysis techniques that facilitate the discovery, analysis, and improvement of business processes \cite{van2016data}. The core idea of process mining techniques is to analyze so-called \textit{event logs}. These event logs are extracted from information systems that support the execution of business processes and, therefore, capture how these processes are actually executed. In this proposal, we focus on \textit{process discovery}. Available process discovery techniques (see e.g. \cite{gunther2007fuzzy,weijters2011flexible,leemans2013discovering}) aim to provide the user with a visual representation of the process captured in the event log. Most of them generate process models, such as Petri Nets or Business Process Model and Notation (BPMN) models. Among others, this allows users to investigate the process flow and detect undesired patterns or sources of inefficiency that have so far been hidden in the event log. With respect to the two problem areas identified above, traditional process discovery extensively relates to both of them. Specifically, it relates to the challenges of noise filtering and case identification (problem area 1) as well as the challenges of event abstraction, event labeling, and model discovery (problem area 2):
 \vspace{0.2em}
@@ -26,7 +26,7 @@ The proposed project primarily relates to three research streams: 1) process min
 %In summary, traditional process mining research has recognized five of the six challenges we identified for this project. Available solutions, however, are not applicable because of a limited scope, simplifying assumptions, or an insufficient degree of automation.
 %}}
 
-\mypar{Robotic process automation} Robotic process automation (RPA) is a technology that aims to automate repetitive human work. The core idea is to let software robots (or bots) mimic the actions of a human directly in a GUI \cite{SYED2020103162}. A key requirement of RPA is to actually identify automatable tasks.  Recognizing this, the research domain of robotic process mining (RPM) has emerged in recent years \cite{leno2021robotic}. The goal of RPM techniques is to automatically identify automatable routines based on UI logs. 
+\mypar{Robotic process mining} Robotic process automation (RPA) is a technology that aims to automate repetitive human work. The core idea is to let software robots (or bots) mimic the actions of a human directly in a GUI \cite{SYED2020103162}. A key requirement of RPA is to actually identify automatable tasks.  Recognizing this, the research domain of robotic process mining (RPM) has emerged in recent years \cite{leno2021robotic}. The goal of RPM techniques is to automatically identify automatable routines based on UI logs. 
 By doing so, RPM faces several challenges with the ones identified for the proposed project, primarily with respect to of noise filtering and case identification from Problem area 1:   
 \vspace{0.2em}
 \newline%
@@ -39,7 +39,7 @@ As a solution, some authors propose supervised noise removal based on an existin
 Researchers have proposed manual, supervised, and unsupervised approaches for this segmentation task. Urabe et al.~\cite{urabe2019visualizing} introduced a manual approach that visualizes the UI log using a graph and, in this way, supports the user in identifying segment boundaries. Agostinelli et al. \cite{agostinelli202111} proposed a supervised approach, requiring a process model, that leverages trace alignments from conformance checking. 
 %This approach, however, requires a Petri net representing the underlying process as input. 
 An unsupervised approach was introduced by Leno et al. \cite{leno2020identifying}. They construct a control-flow graph from the UI log and use back edges detection to identify segment boundaries. Another, very recent, unsupervised approach from Urabe et al. \cite{Urabe21} leverages the concept of co-occurrence from topic segmentation in natural language processing to segment the UI log. Despite the potential of these techniques, 
-the assumption that cases are executed in a strictly sequential manner does not hold for many real-world settings, in which users may work concurrently on different cases (cf., \autoref{fig:example}.
+the assumption that cases are executed in a strictly sequential manner does not hold for many real-world settings, in which users may work concurrently on different cases (cf., \autoref{fig:example}).
 
 % all share the assumption that cases are conducted strictly sequentially. Therefore, these techniques are not sufficient to address challenge 2 from our project.   
 %\noindent\fbox{%
@@ -47,27 +47,27 @@ the assumption that cases are executed in a strictly sequential manner does not 
 %In summary, robotic process automation techniques have proposed first solutions for the challenges of noise filtering and case identification (both problem area 1) in UI logs. However, these solutions are either supervised or they assume that the cases in the UI log are non-overlapping. 
 %}}
 
-\mypar{Natural language processing in process analysis} A wide range of techniques for process analysis build on natural language processing (NLP). They can largely be subdivided into 
-NLP techniques applied to process models, to process-related text documents, and to event logs.
-%three main categories: 1) techniques that apply NLP to process models, 2) techniques that apply NLP to process-related text documents, and 3) techniques that apply NLP to event logs.
-Techniques that apply NLP to \textit{process models} typically analyze the text labels of activities, events, and gateways. Among others, this facilitates the detection and correction of inconsistent terminology \cite{koschmider2007user,pittke2015automatic} and violations of labeling conventions \cite{becker2009towards,leopold2013detection}. Techniques that apply NLP to \textit{process-related text documents} are mainly concerned with process model elicitation. There is a wide range of techniques available for eliciting process models from process descriptions (cf.,~\cite{ghose2007process,friedrich2011process,epure2015automatic}) 
-%and more specific textual resources such as use cases \cite{sinha2010use} or group stories  \cite{de2009business}. 
-When dealing with \emph{event logs}, NLP techniques are primarily used to handle data quality issues.
-%In recent literature, there are also more and more techniques that apply NLP to \textit{event logs}. One key concern addressed by these techniques is the quality of event logs. 
-For instance, there are techniques for automatically relabeling unsuitable event text labels \cite{ramos2021nlp}, as well as for automatically aggregating events in order to obtain a more appropriate level of granularity \cite{deokar2015semantics}.
-With respect to this proposal, existing techniques NLP for process analysis mainly relate to challenges in terms of event annotation and noise filtering in Problem area 1 and to event abstraction and event labeling in Problem area 2: 
-\vspace{0.2em}
-\newline%
-\noindent \textit{Event annotation:} So far, the problem of annotation has been mainly recognized in the context of process models \cite{leopold2013detection}. In a recent contribution, we also defined an approach to extract semantic process information, such as actions, objects, and roles, from text labels in traditional event logs \cite{rebmann2021extracting}. The difference to UI logs is that the text labels existing approaches build on are not available. What is more, the specific attributes available per event as well as their content differ from event to event. Hence, existing techniques are not able to address the problem of event annotation in UI logs. 
-\vspace{0.2em}
-\newline%
-\noindent \textit{Noise filtering:} So far, the removal of noise in event or UI logs has not been explicitly approached from an NLP angle. In \cite{van2021natural}, we showed that NLP can be leveraged to identify semantic execution anomalies in event logs. While this can be considered an important basis for filtering noise, the scope of semantic execution anomalies is not sufficient to recognize all types of noise. Particularly, the recognition of non-business related events requires novel semantic techniques.   
- \vspace{0.2em}
-\newline%
-\noindent \textit{Event abstraction:} While there are many works that are concerned with event abstraction in the context of process mining, only a very few techniques leverage NLP. The most notable one is the technique for event aggregation from Deokar and Tao \cite{deokar2015semantics}. They, however, rely on the taxonomy WordNet \cite{miller1995wordnet}, which has proven to be quite limited in the context of process analytics due to its rather narrow scope \cite{leopold2015towards}. Given the specific process contexts we expect to encounter, we therefore need to define an abstraction technique that builds on other resources. 
- \vspace{0.2em}
-\newline%
-\noindent  \textit{Event labeling:}  The challenge of labeling events that result from event abstraction in event logs is conceptually highly similar to labeling activities that result from activity abstraction in process models. In prior work, we defined a technique that attempts to automatically determine names for (to be aggregated) process model fragments \cite{leopold2014simplifying}. The technique, however, relies on the specifics of event-driven process chains (EPCs) and, therefore, cannot be transferred to labeling higher-level events. 
+%\mypar{Natural language processing in process analysis} A wide range of techniques for process analysis build on natural language processing (NLP). They can largely be subdivided into 
+%NLP techniques applied to process models, to process-related text documents, and to event logs.
+%%three main categories: 1) techniques that apply NLP to process models, 2) techniques that apply NLP to process-related text documents, and 3) techniques that apply NLP to event logs.
+%Techniques that apply NLP to \textit{process models} typically analyze the text labels of activities, events, and gateways. Among others, this facilitates the detection and correction of inconsistent terminology \cite{koschmider2007user,pittke2015automatic} and violations of labeling conventions \cite{becker2009towards,leopold2013detection}. Techniques that apply NLP to \textit{process-related text documents} are mainly concerned with process model elicitation. There is a wide range of techniques available for eliciting process models from process descriptions (cf.,~\cite{ghose2007process,friedrich2011process,epure2015automatic}) 
+%%and more specific textual resources such as use cases \cite{sinha2010use} or group stories  \cite{de2009business}. 
+%When dealing with \emph{event logs}, NLP techniques are primarily used to handle data quality issues.
+%%In recent literature, there are also more and more techniques that apply NLP to \textit{event logs}. One key concern addressed by these techniques is the quality of event logs. 
+%For instance, there are techniques for automatically relabeling unsuitable event text labels \cite{ramos2021nlp}, as well as for automatically aggregating events in order to obtain a more appropriate level of granularity \cite{deokar2015semantics}.
+%With respect to this proposal, existing techniques NLP for process analysis mainly relate to challenges in terms of event annotation and noise filtering in Problem area 1 and to event abstraction and event labeling in Problem area 2: 
+%\vspace{0.2em}
+%\newline%
+%\noindent \textit{Event annotation:} So far, the problem of annotation has been mainly recognized in the context of process models \cite{leopold2013detection}. In a recent contribution, we also defined an approach to extract semantic process information, such as actions, objects, and roles, from text labels in traditional event logs \cite{rebmann2021extracting}. The difference to UI logs is that the text labels existing approaches build on are not available. What is more, the specific attributes available per event as well as their content differ from event to event. Hence, existing techniques are not able to address the problem of event annotation in UI logs. 
+%\vspace{0.2em}
+%\newline%
+%\noindent \textit{Noise filtering:} So far, the removal of noise in event or UI logs has not been explicitly approached from an NLP angle. In \cite{van2021natural}, we showed that NLP can be leveraged to identify semantic execution anomalies in event logs. While this can be considered an important basis for filtering noise, the scope of semantic execution anomalies is not sufficient to recognize all types of noise. Particularly, the recognition of non-business related events requires novel semantic techniques.   
+% \vspace{0.2em}
+%\newline%
+%\noindent \textit{Event abstraction:} While there are many works that are concerned with event abstraction in the context of process mining, only a very few techniques leverage NLP. The most notable one is the technique for event aggregation from Deokar and Tao \cite{deokar2015semantics}. They, however, rely on the taxonomy WordNet \cite{miller1995wordnet}, which has proven to be quite limited in the context of process analytics due to its rather narrow scope \cite{leopold2015towards}. Given the specific process contexts we expect to encounter, we therefore need to define an abstraction technique that builds on other resources. 
+% \vspace{0.2em}
+%\newline%
+%\noindent  \textit{Event labeling:}  The challenge of labeling events that result from event abstraction in event logs is conceptually highly similar to labeling activities that result from activity abstraction in process models. In prior work, we defined a technique that attempts to automatically determine names for (to be aggregated) process model fragments \cite{leopold2014simplifying}. The technique, however, relies on the specifics of event-driven process chains (EPCs) and, therefore, cannot be transferred to labeling higher-level events. 
 % \noindent\fbox{%
 %\parbox{0.985\textwidth}{%
 %In summary, NLP plays important role in the context of automated process analysis. Existing techniques leveraging NLP for process model and event log analysis provide relevant starting points to address the challenges of event annotation and noise filtering (problem area 1) as well as event abstraction and event labeling (problem area 2). However, they are not suitable to effectively address these challenges.
@@ -75,9 +75,11 @@ With respect to this proposal, existing techniques NLP for process analysis main
 
 \subsubsection{Preliminary work}
 
-\todo{Intro}
+The applicants, Prof.\ Leopold and Prof.\ Van der Aa, have published various works that relate to the proposed project. Both applicants have considerable expertise when its comes to the use of natural language processing (NLP) for the purposes of process analysis, through individual as well as joint works, which forms a key component in the proposed solutions.
+Furthermore, the project relates to individual experience of the applicants with respect to the analysis of low-level event data (Prof.\ Van der Aa) and to the understandability of process representations (Prof.\ Leopold):
 
-\mypar{Semantic analysis of process artifacts}
+
+\mypar{NLP for process analysis}
 
 \mypar{Analysis of low-level event data} 
 
