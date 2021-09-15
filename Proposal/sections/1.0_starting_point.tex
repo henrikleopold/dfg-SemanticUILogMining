@@ -80,16 +80,15 @@ Once a UI log has been transformed into an event log, the very low-level nature 
 Therefore, this problem area focuses on the appropriate representation of low-level event data from UI systems, aiming to depict key process information at the right level of granularity. This again comes with three main challenges: 
 \vspace{0.2em}
 \newline%
-\noindent\textit{Event abstraction}: To lift low-level UI data to the right level of granularity, a log's events need to be grouped together into higher-level business activities, e.g., by recognizing that events 8 to 12 jointly result in the creation order \emph{O123}. This abstraction task is highly challenging, though, since business activities may be executed non-consecutively or comprise varying execution patterns.
+\noindent\textit{Event abstraction}: To lift low-level UI data to the right level of granularity, a log's events need to be grouped together into higher-level business activities, e.g., by recognizing that events 8 to 12 jointly result in the creation order \emph{O123}. This abstraction task is highly challenging since business activities may be executed non-consecutively or comprise varying execution patterns.
 \vspace{0.2em}
 \newline%
 \noindent \textit{Activity labeling}: A useful process model requires clear and expressive labels. 
-This means that the business activities, i.e., groups of events,  resulting from event abstraction need to be labeled appropriately. For example, the group consisting of events 8 to 12 can be described by a ``\textit{Create order}'' label, since this is the primary outcome its various low-level steps. Doing this automatically is highly complex, however, and fundamentally differs from the annotation of individual events (cf., Problem area 1). In particular, it requires careful consideration of the meaning of individual events, as well as the role of the business activity in the larger context of the business process.
+This means that the business activities, i.e., groups of events,  resulting from event abstraction need to be labeled appropriately. For example, the group consisting of events 8 to 12 can be described by a ``\textit{Create order}'' label, since this is the primary outcome its various low-level steps. Doing this automatically is very complex, however, and fundamentally differs from the annotation of individual events (cf., Problem area 1). In particular, it requires careful consideration of the meaning of individual events, as well as the role of the business activity in the larger context of the business process.
  \vspace{0.2em}
  \newline%
 \noindent \textit{Model discovery and representation}: 
-Although various process discovery algorithms have been developed, these are not tailored to the representation of abstracted, low-level events. \todo{what is the problem of that?}
-The challenge, therefore, is to develop an technique that can provide the users with an effective representation of the process derived from a UI log, balancing between high-level and low-level information.
+Although various process discovery algorithms have been developed, these are not tailored to the representation of abstracted, low-level events. Hence, they cannot provide users with an effective representation of the UI log.   The challenge, therefore, is to develop a technique that can achieve this by, among others, balancing between high-level and low-level information.
 %
 %The outcome of process discovery is typically a process model-based representation. However, existing process discovery algorithms have not been developed to properly represent low level events from UI logs. The challenge, therefore, is to develop an technique that can provide the users with an effective representation of the process derived from a UI log, balancing between high-level and low-level information.
 
