@@ -80,14 +80,13 @@ Furthermore, the project relates to individual experience of the applicants with
 
 
 \mypar{NLP for process analysis}
-label analysis for process models  and semantic components -> allows for the extraction of actions, business objects, etc, which provides a foundation for event annotation in UI logs, though the latter considerably more free-form text
- experience on the extraction of process information from textual process descriptions (list a bunch) can be helpful, can help here as well, though such existing works focus on process-oriented texts, which is easier than the extraction of information based on, e.g., e-mails.
+The applicants have developed approaches for the extraction of semantic information, such as actions and business objects, from activity labels in process models~\cite{leopold2013detection,leopold2019using} and data attributes in event logs~\cite{rebmann2021extracting}.
+This expertise shall provide the foundation for event annotation in UI logs, a primary task in the proposed project. A key distinction, though, is that the existing works are designed to deal with short fragments (such as ``\emph{create purchase order}''), whereas the project at hand shall also deal with larger texts, such as e-mails. In that regards the applicants can also build on their expertise when extracting process information from textual process descriptions, e.g., for the recognition of process constraints~\cite{van2019extracting,winter2020assessing} and for querying~\cite{leopold2019searching}. Here, a key distinction is that those approaches were designed for process-oriented texts, whereas the proposed project shall also deal with texts that are not structured in this manner.
 
-semantic anomaly detection can help with noise detection
-In \cite{van2021natural}, we showed that NLP can be leveraged to identify semantic execution anomalies in event logs. While this can be considered an important basis for filtering noise, the scope of semantic execution anomalies is not sufficient to recognize all types of noise. Particularly, the recognition of non-business related events requires novel semantic techniques.   
+Recently, the applicants showed the potential of employing semantic information in process mining when using extracted business objects and actions for the purposes of \emph{semantic anomaly detection}~\cite{van2021natural}. Specifically, the work demonstrates that NLP can be leveraged to detect process behavior that violates commonsense rules. This provides a novel angle for anomaly detection in comparison to existing works, which deem process behavior to be anomalous when it is infrequent.
+This work shall provide a starting point for the noise filtering that is required in the proposed project. However, next to the recognition of behavioral anomalies, the project also requires techniques that are specifically designed to recognize and remove non-business related events.
 
-henrik's experience with how to label process models, which could be used as a basis for the labeling of abstracted events
-The challenge of labeling events that result from event abstraction in event logs is conceptually highly similar to labeling activities that result from activity abstraction in process models. In prior work, we defined a technique that attempts to automatically determine names for (to be aggregated) process model fragments \cite{leopold2014simplifying}. The technique, however, relies on the specifics of event-driven process chains (EPCs) and, therefore, cannot be transferred to labeling higher-level events. 
+
 
 
 \mypar{Analysis of low-level event data} 
@@ -97,7 +96,8 @@ Furthermore, experience on the efficient handling of large amounts of low-level 
 Finally, ongoing work on log abstraction with guarantees~\cite{icdesubmission} can be used as a starting point for the meaningful abstraction of low-level data from UI systems.
 
 \mypar{Understandability of processes}
- 
+ henrik's experience with how to label process models, which could be used as a basis for the labeling of abstracted events
+ The challenge of labeling events that result from event abstraction in event logs is conceptually highly similar to labeling activities that result from activity abstraction in process models. In prior work, we defined a technique that attempts to automatically determine names for (to be aggregated) process model fragments \cite{leopold2014simplifying}. The technique, however, relies on the specifics of event-driven process chains (EPCs) and, therefore, cannot be transferred to labeling higher-level events. 
 
 %Currently, Prof. Leopold is a tenured Associate Professor at the Kühne Logistics University and a senior researcher at the Hasso Plattner Institute at the University of Potsdam. He has published over 60 peer-reviewed contributions, among others, in renowned journals such as IEEE Transactions on Knowledge and Data Engineering, IEEE Transactions on Software Engineering, Information Systems, and Decision Support Systems, as well as at leading international conferences, such as Business Process Management (BPM), Advanced Information Systems Engineering (CAiSE), and Computational Linguistics (COLING). These works relate to various aspects of the proposed project, as outlined below in terms of natural language processing in process analysis and process model matching.
 
