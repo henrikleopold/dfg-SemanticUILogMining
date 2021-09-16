@@ -27,7 +27,7 @@ Should we identify a need for evaluation data beyond publicly available logs, we
 We will evaluate the approaches in WP1 to WP5 in terms of their \emph{accuracy} and \emph{efficiency}, e.g., with respect to manually established gold standards, whereas the \emph{usefulness} of the visualization approach developed in WP6 shall also be assessed through a user study. 
 
 \vspace{-1em}
-\subsubsection{Work package 1: UI log enrichment (6 PM)}
+\subsubsection{WP1: UI log enrichment (6 PM)}
 \label{sec:wp1}
 
 While events in UI logs can be associated with a broad range of relevant attributes, they fundamentally lack the \emph{event labels} that are required in process mining to indicate the meaning of events or to recognize equivalent ones (by using labels to define \emph{event classes}).
@@ -76,7 +76,7 @@ MediaWiki Action API\footnote{\url{https://www.mediawiki.org/wiki/API:Main_page}
 \mypar{Outcome} The outcome of this work package is an approach that enriches the UI logs with three new attributes, capturing \textit{actions}, \textit{business objects}, and \textit{sub application}. These additional attributes serve as an important basis for the application of existing process mining techniques and for the semantic analyses conducted in the subsequent work packages.  
 
 
-\subsubsection{Work package 2:  Noise removal (13.5 PM)}
+\subsubsection{WP2:  Noise removal (13.5 PM)}
 \label{sec:wp2}
 
 UI logs often contain events that do not relate to the business process under investigation, such as events related to private activities (e.g., checking Facebook) or to non-related business activities (e.g., filing a reimbursement form of a business trip).
@@ -86,15 +86,15 @@ While various noise detection techniques already exist (cf., \autoref{sec:stateo
 Instead, when dealing with UI logs, we need to \emph{detect events that do not relate to the process at hand}. 
 
 \mypar{Semantic noise detection}
-Therefore, to approach this task, we propose to develop a semantic noise detection approach tailored to the specifics of UI logs, which aims to classify events as \emph{process relevant} or not. 
-To achieve this, we transform the textual attribute values associated with each event into a feature vector, after applying standard preprocessing steps such as lemmatization and stop-word removal. In this manner, we encode both general event information in features, as well as process-specific information extracted in the previous step, i.e., the event's action, business object, and system.
+To tackle this task, we propose to develop a semantic noise detection approach tailored to the specifics of UI logs, which aims to classify events as \emph{process relevant} or not. 
+To achieve this, we transform the textual attribute values associated with each event  into a feature vector, after applying standard preprocessing steps such as lemmatization and stop-word removal. In this manner, we encode both general event information in features, as well as process-specific information extracted in the previous step, i.e., the event's action, business object, and application.
 
-Once events are transformed in such feature vectors, noise identification can be approached as either a single-class or a two-class classification problem, using state-of-the-art text classifiers, such as a fine-tuned BERT~\cite{Devlin2019} model. The former involves training a classifier that recognizes which events are related to a specific process, e.g., by assuming that the majority of events in a UI log are related to that. While such an approach thus would not require any user input, the classification accuracy may be improved in a two-class setting, where users explicitly label some events as process relevant and irrelevant, so that few-shot learning techniques can be employed~\cite{yu2018diverse}.
+Once events are transformed into such feature vectors, noise identification can be approached as either a single-class or a two-class classification problem, using state-of-the-art text classifiers, such as a fine-tuned BERT~\cite{Devlin2019} model. The former involves training a classifier that recognizes which events are related to a specific process, e.g., by assuming that the majority of events in a UI log are related to that. While such an approach thus would not require any user input, the classification accuracy may be improved in a two-class setting, where users explicitly label some events as process relevant and irrelevant, so that few-shot learning techniques can be employed~\cite{yu2018diverse}.
 
-Although such classifiers can be employed with just a UI log as input, we will also incorporate mechanisms that allow user to provide additional domain-specific information about the process at hand, such as textual documentation or (high-level) process models, which can help the classifier to better distinguish process relevant from irrelevant events.
+Although such classifiers can be used with just a UI log as input, we will also incorporate mechanisms that allow user to provide additional domain-specific information about the process at hand, such as textual documentation or (high-level) process models, which can help the classifier to better distinguish process-relevant from irrelevant events.
 
 \mypar{Outcome}
-The outcome of this work package is a classification approach that identifies irrelevant events in a UI log. The approach will be applicable without requiring any additional user input, though users may improve the approach's accuracy through manual labeling of events, as well as by supplying further process-specific artifacts (e.g., a process model) as input.
+The outcome of this work package is a classification approach that identifies irrelevant events in a UI log. The approach will be applicable without requiring any additional user input, though users may improve the approach's accuracy by providing manually classified events or process-specific artifacts (e.g., a process model) as input.
 %This work package focuses on the classification of events in a UI log and the subsequent identification and  removal of irrelevant, i.e., noisy, ones.
 %
 %\mypar{Event classification}
