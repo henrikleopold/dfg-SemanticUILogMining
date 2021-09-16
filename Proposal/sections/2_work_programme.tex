@@ -143,10 +143,11 @@ To guarantee an optimal solution, we will initially develop an approach for exha
 As such, this heuristic version shall aim to considerably improve the computation time, with limited impact on the quality of the obtained results.
 
 \mypar{Constraint suggestion}
-\todo{write something about how to identify interesting constraints}
+Although it is clear that guaranteeing user-defined constraints can lead to meaningful event abstraction, it may not always be obvious to users which constraints they shall request. Therefore, we will also develop an exploratory algorithm that strives to suggest \emph{interesting} constraints on the event data, such as particular attribute values that lead to a clear separation between different groups of events from a control-flow or temporal perspective, e.g., by considering aspects such as cohesion and coupling over the  abstracted log~\cite{vanderfeesten2007quality}. 
+A prime challenge here would be to obtain suggestions in a computationally efficient manner, given the high dimensionality of the task. We aim to deal with this by reducing the problem size through decomposition of the event data, e.g., on the directly-follows graph, and by considering the characteristics of data attributes in the log, e.g., through data profiling~\cite{papenbrock2015data}, allowing us to discard unpromising attributes in advance.
 
 
-\mypar{Outcome} The outcome of this work package is an approach that allows users to abstract a low-level event log into high-level activities based on user-defined or suggested abstraction requirements. 
+\mypar{Outcome} The outcome of this work package is an approach that allows users to abstract a low-level event log into high-level activities based on user-defined or suggested abstraction requirements, providing clear insights into the high-level process behavior contained in the UI log.
 
 
 \subsubsection{Work package 5: Activity labeling (12 PM)}
