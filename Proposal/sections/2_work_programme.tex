@@ -95,47 +95,22 @@ Although such classifiers can be used with just a UI log as input, we will also 
 
 \mypar{Outcome}
 The outcome of this work package is a classification approach that identifies irrelevant events in a UI log. The approach will be applicable without requiring any additional user input, though users may improve the approach's accuracy by providing manually classified events or process-specific artifacts (e.g., a process model) as input.
-%This work package focuses on the classification of events in a UI log and the subsequent identification and  removal of irrelevant, i.e., noisy, ones.
-%
-%\mypar{Event classification}
-%\todo{maybe this should be a separate work package? since it also comes with some particular challenges}
-%Process mining techniques assume that each event in a log is associated with a particular event class, denoting the action to which the event corresponds~\cite{van2016data}, such as ``\emph{accept order}'' or ``\emph{pay invoice amount}''.
-%However, such event classes are not readily available for UI logs. Rather, as shown in  \autoref{fig:example}, events are characterized by various attributes in their payload, which jointly indicate the type of step that is being performed. 
-%%For instance, in the form of  the respective application (e.g., Outlook or Chrome) and other details, such as the specific element in the application (e.g., an e-mail or a particular window) and relevant values (e.g., the subject and content of an e-mail). 
-%To transform a UI log into an event log that can be employed in process mining, 
-%each event needs to be assigned a specific event class based on its payload attributes, which may differ across UI logs or even for different events in the same log. For example, we strive to recognize that certain e-mails refer to the \emph{creation of an order}, whereas other e-mails may correspond to the \emph{handling of an order}. Though these are  two distinct process steps, they nonetheless involve the same application (e.g., Outlook), element (a particular e-mail), and likely the same e-mail subject. Therefore, we need to recognize that the content of the e-mail, as well as its position in a log, relative to related events, determine the event class in this case.
-%
-%To perform this classification, we recognize that process steps  can be primarily characterized by a combination of a business object (e.g., an \emph{order} or a \emph{ticket}) and an action applied to the object (e.g., \emph{create} or \emph{handle})~\cite{ref}. 
-%To recognize these two components in UI events, we aim to combine and adapt existing techniques for the recognition of semantic process components in textual attributes~\cite{rebmann} and the extraction of actions from free-text log attributes~\cite{gupta2020analyzing}. Afterwards the identified event classes can be refined or grouped by employing techniques for the recognition of duplicate~\cite{ref} or polluted event labels~\cite{ref}.
-%
-% 
-% 
-% \mypar{Noise removal}
-%
-%\begin{itemize}
-%\item Would be great to go beyond rules here. 
-%\item Type 1: Repetitive actions, actions without any effect, and actions that overwrite past actions. 
-%\item Type 2: Non-business related stuff: Facebook etc. However, also irrelevant e-mails.
-%\item Can we use some sort of semantic angle here? Not sure whether we can determine the domain of a process and just kill anything that is unrelated or so. 
-%\end{itemize}
-%
-%\mypar{Outcome}
 
-\subsubsection{Work package 3: Case identification (16.5 PM)}
+\subsubsection{WP3: Case identification (16.5 PM)}
 \label{sec:wp3}
 
-Once the irrelevant events have been filtered out of a UI log, we next need to recognize which events belong to the same process instance, e.g., to the same customer order or service ticket, a task referred to as \emph{case identification}.
+Once irrelevant events have been filtered out from  a UI log, we next need to recognize which events belong to the same process instance, e.g., to the same customer order or service ticket, a task referred to as \emph{case identification}.
 
-Existing techniques that address this task in general process mining settings primarily base the identification on co-occurrence statistics, which reveal behavioral regulations in an event log (cf., \autoref{sec:stateoftheart}). While such techniques work well for relatively structured settings, their performance deteriorates for event logs stemming from more flexible environments in which the execution of several cases overlaps, such as e.g., seen in the example of \autoref{fig:example}, the first three events each start a new process instance, by initiating three different orders in a batch-like manner.
+Existing techniques that address this task in general process mining settings primarily base the identification on co-occurrence statistics, which reveal behavioral regulations in an event log (cf., \autoref{sec:stateoftheart}). While such techniques work well for relatively structured settings, their performance deteriorates for event data stemming from more flexible environments, in which the execution of several cases overlap. This is, e.g., seen in the example of \autoref{fig:example}, where the first three events each start a new process instance, by initiating three different orders in a batch-like manner.
 
 \mypar{Instance-based event matching}
 Recognizing this challenge, this work package sets out to develop a new approach for case identification, tailored to the specifics of UI logs, by building on semantic matching technology.
-Specifically, to determine the likelihood that events belong to the same case from a semantic viewpoint, e.g., because both refer to a same order ID or mention the same customer name, we frame the comparison of the events as an \emph{instance-based schema matching} task. For this, we recognize that events stemming from a particular application can be represented as instance in a particular schema (characterized by their payload attributes), enabling the application of existing matching techniques (cf., \cite{somerefs}).
+Specifically, to determine the likelihood that events belong to the same case from a semantic viewpoint, e.g., because both refer to a same order ID or mention the same customer name, we frame the comparison of the events as an \emph{instance-based schema matching} task. For this, we recognize that events stemming from a particular application can be represented as instances in a particular schema (characterized by their payload attributes), enabling the application of existing matching techniques (cf., \cite{rinaldi2018matching,lehmberg2017stitching}).
 
-\mypar{Optimization} Having obtained similarity scores between individual events, these scores can then be used together with behavioral regularities identified by existing techniques~\cite{ref}, and cardinality constraints (e.g., each event belongs to exactly or at most one case), to establish an optimization problem, specifically using Markov logic formulation. By solving this problem, we will obtain an event grouping that maximizes the semantic similarity and respects the identified behavioral regularities.
+\mypar{Optimization} Having obtained similarity scores between individual events, these scores can then be used together with behavioral regularities identified by existing techniques~\cite{diba2020extraction,ferreira2009discovering}, and cardinality constraints (e.g., each event belongs to exactly or at most one case), to establish an optimization problem, specifically using Markov logic formulation. By solving this problem, we will obtain an event grouping that maximizes the semantic similarity and respects the identified behavioral regularities for each of the identified cases.
 
 \mypar{Outcome}
-The outcome of this work package is a case identification approach that assign case identifiers to the events in a (filtered) UI log, such that the new log encompasses a number of cases, each corresponding to a sequence of events related to the same process instance.
+The outcome of this work package is a case identification approach that assign case identifiers to the events in a (filtered) UI log, such that the new log encompasses a number of cases, each corresponding to a sequence of events related to the same process instance. This, then, completes the transformation from a UI log into an event log suitable for process mining.
 
 
 \subsubsection{Work package 4: Log abstraction (12 PM)}
