@@ -116,8 +116,6 @@ The outcome of this work package is a case identification approach that assign c
 \subsubsection{WP4: Event abstraction (12 PM)}
 \label{sec:wp4}
 
-Even after transformation into a proper event log, the logs stemming from UI recordings comprise low-level event data, in which each event corresponds to a small action performed by a user. This fine-granular nature makes the data unsuitable for meaningful process analysis. This particularly holds for process discovery, since the application of discovery techniques on low-level event logs yields so-called \emph{spaghetti models}, as e.g., depicted in \autoref{fig:spaghetti}.
-
 \begin{wrapfigure}{r}{0.5\textwidth} 
 	\vspace{-15pt}
 	\begin{center}
@@ -128,10 +126,15 @@ Even after transformation into a proper event log, the logs stemming from UI rec
 	\vspace{-15pt}
 	\vspace{1pt}
 \end{wrapfigure} 
+Even after transformation into a proper event log, the logs stemming from UI recordings comprise low-level event data, in which each event corresponds to a small action performed by a user. This fine-granular nature makes the data unsuitable for meaningful process analysis. This particularly holds for process discovery, since the application of discovery techniques on low-level event logs yields so-called \emph{spaghetti models}, as e.g., depicted in \autoref{fig:spaghetti}.
+
+
 
 To tackle this issue, event abstraction is a commonly used means to lift the event sequences of a log to a more abstract representation, by grouping low-level events into high-level activities. 
 As discussed in \autoref{sec:stateoftheart}, various techniques for this purpose exist. Yet, their focus is on \emph{how} the abstraction is conducted, rather than \emph{what properties} the abstracted log shall satisfy. Without dedicated control on the result of event abstraction, however, it is hard to ensure that an abstraction is appropriate for a particular context or specific analysis goal.
 This is particularly problematic in the context of UI logs, since these have clear characteristics that should or can be exploited to guide the abstraction task.
+
+
 
 \mypar{Constraint-driven event abstraction}
 To overcome this limitation, we propose to develop an approach for \emph{constraint-driven event abstraction}, which it supports a declarative characterization of the properties the abstracted log shall adhere to, in order to be meaningful for downstream analysis. While our approach shall support a broad range of constraint types, common ones to impose in the context of UI logs are for instance constraints that ensure that each high-level activity only comprises events that stem from the same application (to ensure semantic cohesion) or occurred within a certain timespan of each other (to ensure behavioral cohesion). 
