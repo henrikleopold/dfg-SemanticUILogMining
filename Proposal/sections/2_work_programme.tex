@@ -202,14 +202,15 @@ The final step is concerned with the visualization of the process captured in th
 	\label{fig:workplan}
 \end{figure}
 
-As explained above, the project consists of two work streams and six work packages. Naturally, there are interdependencies among these work packages. Figure \ref{fig:workplan} shows a simplified work plan that mostly abstracts from parallel and overlapping work within each work stream. It is important to highlight that the transitions between two packages will not be as strict as depicted. We are aware of the various interdependencies and will take them into account appropriately.  
-There are, for instance, interdependencies between WP1 and WP1. Without an enriched UI log, the noise removal technique cannot build on the newly introduce attributes. This, however, can be addressed by taking the manually created gold standard for the evaluation of WP1 as input for WP2. In this way, the noise removal technique cannot already be developed without needing a ``perfect'' solution for WP1. The rather abstract view on the work plan shown in Figure \ref{fig:workplan} highlights our general idea of having two main iterations:
+As explained above, the project consists of two work streams and six work packages. Naturally, there are interdependencies among these work packages. \autoref{fig:workplan} shows a simplified work plan that mostly abstracts from parallel and overlapping work within each work stream. It is important to highlight that the transitions between packages will not be as strict as depicted. We are aware of the various interdependencies and will take them into account appropriately.  
+%There are, for instance, interdependencies between WP1 and WP2. Without an enriched UI log, the noise removal technique cannot build on the newly introduce attributes. This, however, can be addressed by taking the manually created gold standard for the evaluation of WP1 as input for WP2. In this way, the noise removal technique can already be developed without needing a ``perfect'' solution for WP1. 
+The abstract view on the work plan shown in \autoref{fig:workplan} highlights our general idea of having two main iterations:
 \begin{itemize}
-	\item The first iteration ends after 21 months. At the end of this iteration, there will be a first implemented prototype available. The individual techniques have been evaluated both independently and as a whole. The main outcome from this iteration, therefore, are insights into the strengths and weaknesses of our techniques, which allows us to determine the required improvements and adaptations for the second iteration. 
-	\item The second iteration is slightly shorter and will be mainly used to address identified weaknesses and improve the performance of the technique.
+	\item The first iteration ends after 21 months. At the end of this iteration, there will be a first implemented prototype available for the proposed end-to-end pipeline. The individual approaches have been evaluated both independently and as a whole. The main outcome from this iteration, therefore, are insights into the strengths and weaknesses of our work, which allows us to determine the required improvements and adaptations for the second iteration. 
+	\item The second iteration is slightly shorter and will be mainly used to address identified weaknesses and improve the quality and broaden the scope of the developed approaches.
 \end{itemize} 
 
-Note that these two iterations also help us to account for the interdependencies between the two work streams (as discussed earlier). In the first iteration, WS 2 will build on traditional, freely available event logs, while in the second iteration WS 2 can build on a UI log that has been processed with the techniques from WS1. 
+Note that these two iterations help us to account for the aforementioned interdependencies between the work streams. In the first iteration, WS2 will build on traditional, freely available event logs, while in the second iteration WS2 can use UI logs that stem from the approaches developed in WS1. 
 
 
 
