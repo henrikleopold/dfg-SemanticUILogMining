@@ -1,0 +1,83 @@
+%!TEX program = xelatex
+
+\documentclass[a4paper,10pt,oneside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[usenames,svgnames]{xcolor} % Allows the definition and use of custom colours
+\usepackage{graphicx}
+\usepackage{datetime}
+\usepackage{pdfpages}
+\usepackage[hidelinks]{hyperref}
+\usepackage{footnote}
+\usepackage{booktabs}
+\usepackage{datetime}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xstring}
+\usepackage{titletoc}
+
+\input{structure.tex} % Include the file that specifies the document structure
+
+% preamble of cover letter
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+% Set Page layout:
+%\usepackage{changepage}
+%\changepage{text height}{text width}{even-side margin}
+%{odd-side margin}{column sep.}
+%{topmargin}{headheight}{headsep}{footskip}
+%\changepage{+3cm}{}{}{}{}{}{}{}{-5cm}
+
+\newdateformat{mydateformat}{\THEDAY~\monthname[\THEMONTH] \THEYEAR}
+\newdateformat{mydateformattwo}{\monthname[\THEMONTH] \THEYEAR}
+
+
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\patchcmd{\part}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
+
+\newcommand{\myheader}[1]{\noindent\textbf{\Large{#1}}}
+
+\newcommand{\mybib}[3]{\item #1: \textit{#2.} #3.}
+\newcommand{\mybibhl}[3]{\item #1: \textit{#2.} \\ #3.}
+\newcommand{\mythesis}[3]{#1: \textit{#2} & #3 \\ \addlinespace[1mm]}
+\newcommand{\mythesisind}[4]{#1: \textit{#2} & #4 \\ 
+	Industrial partner: #3\\ 	\addlinespace[1mm]}
+
+\newcommand{\mypartheader}[1]{
+	\newpage
+	\phantomsection
+\begin{paracol}{1} % Begin the multi-column environment
+	\parbox[top][0.12\textheight][c]{\linewidth}{ 
+		\vspace{-0.04\textheight}
+		{\huge\color{headings} #1}
+	}
+\end{paracol}
+\vspace{-4em}
+\addcontentsline{toc}{chapter}{#1}
+\lfoot{\textcolor{darkgray}{#1}}
+}
+
+
+
+\pagestyle{fancy} % Enable custom headers and footers
+
+\fancyhf{} % This suppresses all headers and footers by default, add headers and footers in the template file as per the example
+
+
+
+
+
+\begin{document}
+
+
+
+\input{contents/cv}
+
+\input{contents/publications}
+
+
+\end{document}
