@@ -184,7 +184,8 @@ We shall turn each of these strategies into an automated label-generation techni
 \subsubsection{WP6: Visualization (12 PM)}
 \label{sec:wp6}
 
-The final step is concerned with the visualization of the process captured in the UI log. In traditional process discovery, this is achieved by generating respective process models. Depending on the employed discovery algorithm, the resulting process model could be a Petri net \cite{van2004workflow}, a BPMN model \cite{conforti2016bpmn}, or a process tree \cite{leemans2013discovering}. While each algorithm and output representation come with advantages and disadvantages, there is no specific discovery technique available for the UI log generated in WP1 to WP5. The specific challenge is that the original level of granularity of the UI log is not appropriate for visualization since the number of events is too high. Yet, the user might be interested in getting insights into this level to fully understand how the process is executed. What is required is a discovery algorithm that allows the user to adapt the process visualization in a flexible manner with respect to 1) the abstraction level and 2) the general scope. In the context of data warehousing and OLAP \cite{chaudhuri1997overview}, the former corresponds to \textit{drilling down} and \textit{rolling up}, while the latter corresponds to \textit{slicing}. 
+The final step is concerned with the visualization of the process captured in the UI log. In traditional process discovery, this is achieved by generating respective process models. Depending on the employed discovery algorithm, the resulting process model could be a Petri net \cite{van2004workflow}, a BPMN model \cite{conforti2016bpmn}, or a process tree \cite{leemans2013discovering}. While each algorithm and output representation comes with advantages and disadvantages, there is no specific discovery technique available tailored to the kind of UI-based event logs resulting from WP1 to WP5. %for the UI log generated in WP1 to WP5. 
+The specific challenge is that the original level of granularity of the UI log is not appropriate for visualization since the number of events is too high. Yet, the user might be interested in getting insights into this level to fully understand how the process is executed. What is required is a discovery algorithm that allows the user to adapt the process visualization in a flexible manner with respect to 1) the abstraction level and 2) the general scope. In the context of data warehousing and OLAP \cite{chaudhuri1997overview}, the former corresponds to \textit{drilling down} and \textit{rolling up}, while the latter corresponds to \textit{slicing}. 
 
 \mypar{Slider-based abstraction} The general idea of adapting the level of abstraction using a slider approach is present in several commercial process mining tools, such as Celonis\footnote{\url{www.celonis.com}} and Disco\footnote{\url{https://fluxicon.com/disco/}}. However, they implement abstraction by removing arcs or nodes based on their frequency. Our idea is to merge events based on the abstraction mechanism introduced in WP4 and use the approach from WP5 to present meaningful labels to the user. In case the user is interested in more details, the user can drill down on individual events or groups thereof and explore the process on several levels at the same time. To this end, we will build on the ideas on multi-level discovery from \cite{leemans2020using} and adapt them to the specific scenario of slider-based abstraction. 
 
@@ -192,11 +193,11 @@ The final step is concerned with the visualization of the process captured in th
 
 \mypar{User evaluation} The two mechanisms introduced above are novel and require interaction with users. Therefore, we plan to complement the technical evaluation of our approach with a user study. Specifically, we aim to investigate the effectiveness (in terms of the ability of obtaining insights) and efficiency (in terms of how fast user can obtain insights).  For this, we will build on our experience with user studies in the context of process understandability~\cite{pittke2015automatic} and process modeling support~\cite{van2020say}.
 
-\mypar{Outcome} The outcome of this work package is a novel discovery and representation approach that can visualize UI logs in a flexible fashion. As such, it completes our overall pipeline for semantic process elicitation and discovery from UI logs.  
+\mypar{Outcome} The outcome of this work package is a novel discovery and representation approach that can visualize UI logs in a flexible fashion. As such, it completes our overall pipeline for semantic process discovery from UI logs.  
 
 
 
-\subsubsection{Overview on the work plan}
+\subsubsection{Overview of the work plan}
 
 \begin{figure}[bt]
 \centering
@@ -205,9 +206,11 @@ The final step is concerned with the visualization of the process captured in th
 	\label{fig:workplan}
 \end{figure}
 
-As explained above, the project consists of two work streams and six work packages. Naturally, there are interdependencies among these work packages. \autoref{fig:workplan} shows a simplified work plan that mostly abstracts from parallel and overlapping work within each work stream. It is important to highlight that the transitions between packages will not be as strict as depicted. We are aware of the various interdependencies and will take them into account appropriately.  
+As explained above, the project consists of two work streams and six work packages. 
+%Naturally, there are interdependencies among these. 
+\autoref{fig:workplan} shows a simplified work plan that mostly abstracts from parallel and overlapping work within each work stream. It is important to highlight that the transitions between packages will not be as strict as depicted. We are aware of the various interdependencies that exist among the packages and will take them into account appropriately.  
 %There are, for instance, interdependencies between WP1 and WP2. Without an enriched UI log, the noise removal technique cannot build on the newly introduce attributes. This, however, can be addressed by taking the manually created gold standard for the evaluation of WP1 as input for WP2. In this way, the noise removal technique can already be developed without needing a ``perfect'' solution for WP1. 
-The abstract view on the work plan shown in \autoref{fig:workplan} highlights our general idea of having two main iterations:
+The abstract view on the work plan, shown in \autoref{fig:workplan}, highlights our general idea of having two main iterations:
 \begin{itemize}
 	\item The first iteration ends after 21 months. At the end of this iteration, there will be a first implemented prototype available for the proposed end-to-end pipeline. The individual approaches have been evaluated both independently and as a whole. The main outcome from this iteration, therefore, are insights into the strengths and weaknesses of our work, which allows us to determine the required improvements and adaptations for the second iteration. 
 	\item The second iteration is slightly shorter and will be mainly used to address identified weaknesses and improve the quality and broaden the scope of the developed approaches.
