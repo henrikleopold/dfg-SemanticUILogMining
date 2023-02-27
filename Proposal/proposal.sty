@@ -15,7 +15,6 @@
 \usepackage{eurosym}
 \usepackage{fp}
 \usepackage{pgfgantt}
-
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
@@ -77,3 +76,4 @@
 \newcommand{\position}[2]{\par #1 \hfill \num[round-mode = places, round-precision = 2]{#2}\,\euro \FPeval{\funds}{\funds + #2}}
 % Same as above but with multiples of a position.
 \newcommand{\positionmul}[3]{\par #1 \hfill \num{#3} $\times$ \num[round-mode = places, round-precision = 2]{#2}\,\euro \FPeval{\funds}{\funds + #3*#2}}
+

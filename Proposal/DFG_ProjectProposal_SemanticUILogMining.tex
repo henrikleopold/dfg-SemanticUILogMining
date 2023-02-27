@@ -6,7 +6,7 @@
 \usepackage{xcolor}
 \usepackage{adjustbox}
 \usepackage{wrapfig}
-\newcommand\todo[1]{\textcolor{red}{#1}}
+% \newcommand\todo[1]{\textcolor{red}{#1}}
 \newenvironment{itemize*}%
   {\begin{itemize}%
     \setlength{\itemsep}{0pt}%
@@ -16,7 +16,8 @@
 \addbibresource{ref.bib}
 \renewcommand*{\bibfont}{\fontsize{10pt}{1.2}\selectfont}
 
-\newcommand{\mypar}[1]{\smallskip\vspace{-0.1em}\noindent\textbf{#1.}}
+\newcommand{\mypar}[1]{\smallskip\vspace{-0.5em}\noindent\textbf{#1.}}
+\newcommand{\mypartwo}[1]{\smallskip\vspace{-0.1em}\newline\noindent\textit{#1.}}
 
 \newcommand{\applicants}{\normalfont  Henrik Leopold, Hamburg \\ Han van der Aa, Mannheim \bfseries}
 \newcommand{\project}{Semantic Process Discovery from User Interaction Logs}
@@ -44,42 +45,35 @@
  \vspace{-1em}
  %++++++ SECTION 1 ++++++
 \section{Starting Point}
-\input{sections/1.0_starting_point}
+
+\subsection{Overview}
+
+\input{sections/1.1_starting_point}
 
 \subsection{State of the art and preliminary work}
-\input{sections/1.1_state_of_art}
-
-\subsection{Project-related publications}
-\input{sections/1.2_project_publications}
+\input{sections/1.2_state_of_art}
 
  % ++++++ SECTION 2 ++++++
 \section{Objectives and work programme}
 \input{sections/2_work_programme}
 
 % ++++++ SECTION 3 ++++++
-\section{Bibliography concerning the state of the art, the research objectives, and the work}
-\printbibliography[heading=none]
 
+\section{Project- and subject-related list of publications}
+\printbibliography[heading=none]
+%\input{sections/3_project_publications}
+
+
+%\todo{Sections 1 to 3 must not exceed 17 pages.}
 
 % ++++++ SECTION 4 ++++++
-\vspace{-1em}
-\section{Relevance of sex, gender and/or diversity}
-\vspace{-1em}
-Neither sex, gender, nor diversity will play a role in the context of this research. 
-%\todo{Sections 1 to 4 must not exceed 15 pages.}
-\pagebreak
+
+\section{Supplementary information on the research context}
+\input{sections/4_supplementary_info}
 
 % ++++++ SECTION 5 ++++++
-\section{Supplementary information on the research context}
-\input{sections/5_supplementary_info}
-
-% ++++++ SECTION 6 ++++++
-\section{People/collaborations/funding}
-\input{sections/6_people}
-
-% ++++++ SECTION 7 ++++++
 \section{Requested modules/funds}
-\input{sections/7_funds}
+\input{sections/5_funds}
 
 % ++++++ APPENDIX ++++++
 \subsection*{Appendices}
